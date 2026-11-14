@@ -1709,55 +1709,6 @@ body[data-perf="2"] .hv-one{animation:none}
 .hv-gy{position:absolute;left:50%;top:50%;font-size:13px;line-height:1;color:#fff;text-shadow:0 0 6px #ffd36b;transform:translate(-50%,-50%);animation:hvGy .6s ease-out forwards}
 @keyframes hvGy{to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(180deg) scale(.4);opacity:0}}
 @media(prefers-reduced-motion:reduce){.hv-bk,.hv-gl,.hv-curtain,.hv-flare,.hv-ringup,.hv-one{animation:none!important}}
-
-/* ===== SKIN UI v2: token, permukaan, motif 4 lane ===== */
-:root{--ur:1;--u-bl:6px;--u-font:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;--r-s:calc(8px*var(--ur));--r-m:calc(13px*var(--ur));--r-l:calc(22px*var(--ur))}
-body{--lanes:linear-gradient(90deg,var(--l0) 0 25%,var(--l1) 25% 50%,var(--l2) 50% 75%,var(--l3) 75%)}
-*{font-family:var(--u-font)}
-body .menu-card,body .modal-content{border-radius:var(--r-l);-webkit-backdrop-filter:blur(var(--u-bl));backdrop-filter:blur(var(--u-bl));scrollbar-width:thin;scrollbar-color:var(--th-bd,#667) transparent}
-body .menu-card{padding:38px 32px 30px}
-.menu-title{font-size:clamp(2rem,9vw,2.6rem);font-weight:900;letter-spacing:-.025em;line-height:1.05}
-.menu-title::after,.modal-content h2::after{content:"";display:block;height:3px;border-radius:3px;background:var(--lanes)}
-.menu-title::after{width:76px;margin:12px auto 0}
-.modal-content h2::after{width:56px;margin-top:8px}
-.menu-subtitle{margin:12px 0 28px;font-size:.95rem}
-.modal-content h2{font-size:1.45rem;letter-spacing:-.01em}
-.about-h,.ct-h,.mode-title{font-weight:700}
-.modal{background:rgba(4,4,14,.62);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
-#ctModal{-webkit-backdrop-filter:none;backdrop-filter:none}
-.menu-btn,.ctrl-btn,#startBtn,.gfx-opt,.fps-opt,.mode-card,.set-sec,.shop-tab{border-radius:var(--r-m)}
-.ctrl-btn{border-radius:var(--r-s)}
-.corner-btn{border-radius:calc(var(--r-m) + 2px)}
-.menu-btn{border:1px solid var(--s-line);transition:transform .15s,box-shadow .2s,filter .2s,background .2s}
-.menu-btn:hover{transform:translateY(-1px)}
-body .menu-btn.primary,body .set-sec .set-reset.primary{background:var(--u-b-bg,linear-gradient(135deg,var(--ab1),var(--ab2)));border:1px solid var(--u-b-bd,transparent);color:var(--u-b-fg,#fff);box-shadow:0 4px 18px var(--th-glow,rgba(0,114,255,.4))}
-body .menu-btn.primary:hover{filter:brightness(1.12)}
-body .corner-btn{background:rgba(16,14,40,.58);border-color:var(--th-bd,var(--s-line));-webkit-backdrop-filter:blur(var(--u-bl));backdrop-filter:blur(var(--u-bl))}
-body .corner-btn:hover{background:rgba(255,255,255,.14)}
-.mode-card{background:var(--s-card);border-color:var(--s-line)}
-.mode-card:hover{background:rgba(255,255,255,.1)}
-#modeSurvival{border-left:3px solid var(--l0)}
-#modeChill{border-left:3px solid var(--l1)}
-body .game-container{border-radius:var(--r-l)}
-.header h1{font-weight:900;letter-spacing:-.01em}
-.score-board strong,#tCur{font-variant-numeric:tabular-nums}
-.feedback{letter-spacing:.04em}
-#startBtn{padding:14px;letter-spacing:.03em}
-button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
-.ct-sub{margin:12px 0 6px;font-size:.8rem;color:#d8d8ea}
-.ct-opts{display:flex;flex-wrap:wrap;gap:6px}
-.ct-opts .gfx-opt{flex:1 1 28%;padding:10px 6px;font-size:.85rem;letter-spacing:0}
-@media (prefers-reduced-motion:reduce){.menu-btn,.corner-btn,.mode-card{transition:none}.menu-btn:hover{transform:none}}
-body[data-perf="2"] .menu-card,body[data-perf="2"] .modal-content,body[data-perf="2"] .corner-btn,body[data-perf="2"] .modal{-webkit-backdrop-filter:none;backdrop-filter:none}
-
-/* ===== TOMBOL KUSTOM ===== */
-.ct-bpv{display:flex;justify-content:center;margin:10px 0}
-.ct-bpv .menu-btn{width:72%}
-.ct-opts .menu-btn{flex:1;padding:11px 8px;font-size:.85rem}
-#btPick .gfx-opt,#btShapeAll .gfx-opt,#btShapeOne .gfx-opt{flex:1 1 20%;padding:8px 4px;font-size:.76rem}
-#btPick .has{border-color:var(--ac)}
-#btCol{flex:none;width:44px;height:28px;padding:0;border:0;background:none;cursor:pointer}
-#btColDel{margin-left:auto}
 </style>
 </head>
 <body>
@@ -1811,12 +1762,13 @@ body[data-perf="2"] .menu-card,body[data-perf="2"] .modal-content,body[data-perf
 
 <!-- About me -->
 <div id="hvToast" role="status"></div>
+<style>#donateAsk,#donatePick,#donatePrev,#donateDone{display:none!important}</style>
 <div id="donateModal" class="modal hidden">
   <div class="modal-content shop-card">
     <button id="btnDonateClose" class="menu-btn close-top" aria-label="Tutup">✕ TUTUP</button>
     <h2>💛 Support Me</h2>
     <p>Donate seikhlasnya, tidak wajib kok!</p>
-    <div id="donateWarn" class="dn-warn">⚠️ Jangan lupa screenshot bukti donasimu! Tanpa screenshot, premium tidak bisa diaktifkan.</div>
+    <div id="donateWarn" class="dn-warn">⚠️ Setelah donate, isi nama persis seperti di kolom Dari dan nominalnya di bawah ini. Kalau tidak cocok, premium tidak bisa diaktifkan.</div>
     <a id="donateLink" class="menu-btn primary" href="https://saweria.co/pwikooooo" target="_blank" rel="noopener noreferrer">https://saweria.co/pwikooooo</a>
     <p id="donateAsk" class="dn-note">Sudah donate? Upload screenshot buktinya. Pastikan nama, nominal, dan waktu terlihat jelas. Screenshot palsu atau diedit tidak akan lolos.</p>
     <input id="donateShot" type="file" accept="image/*" style="display:none" />
@@ -1824,6 +1776,14 @@ body[data-perf="2"] .menu-card,body[data-perf="2"] .modal-content,body[data-perf
     <img id="donatePrev" alt="" style="display:none;max-width:100%;max-height:220px;object-fit:contain;border-radius:10px;margin:8px auto 0" />
     <p id="donateStatus" class="dn-note"></p>
     <button id="donateDone" class="menu-btn primary" style="display:none">KIRIM BUKTI</button>
+    <div id="donateNoShot" class="dn-note" style="margin-top:12px">
+      <p>Isi nama persis seperti yang kamu tulis di kolom Dari saat donate, dan nominalnya.</p>
+      <p style="margin:6px 0 2px">Nama di kolom Dari</p>
+      <input id="donateName" class="erase-input" type="text" maxlength="40" autocomplete="off" />
+      <p style="margin:6px 0 2px">Nominal (Rp)</p>
+      <input id="donateAmt" class="erase-input" type="number" inputmode="numeric" min="1" />
+      <button id="donateManual" class="menu-btn" type="button" style="display:block;width:100%;margin-top:8px">KLAIM PREMIUM</button>
+    </div>
     <p id="donateThanks" class="dn-note" style="display:none">Terima kasih sudah donate! 💛</p>
   </div>
 </div>
@@ -2013,28 +1973,6 @@ body[data-perf="2"] .menu-card,body[data-perf="2"] .modal-content,body[data-perf
     <div id="ctFx" class="gfx-seg"><button class="gfx-opt" type="button" data-fx="blobs">Gumpalan cahaya</button><button class="gfx-opt" type="button" data-fx="stars">Bintang</button><button class="gfx-opt" type="button" data-fx="none">Polos</button></div>
     <label class="ct-rg"><span>Cahaya papan</span><input type="range" min="0" max="100" data-k="gl"></label>
     <label class="ct-rg"><span>Kepekatan panel</span><input type="range" min="30" max="100" data-k="op"></label>
-    <h3 class="ct-h">Bentuk &amp; gaya UI</h3>
-    <label class="ct-rg"><span>Sudut membulat</span><input type="range" min="0" max="100" data-k="ur"></label>
-    <label class="ct-rg"><span>Efek kaca</span><input type="range" min="0" max="100" data-k="ub"></label>
-    <p class="ct-sub">Font</p>
-    <div class="ct-opts"><button class="gfx-opt" type="button" data-uk="uf" data-uv="sans" style="font-family:'Segoe UI',sans-serif">Standar</button><button class="gfx-opt" type="button" data-uk="uf" data-uv="round" style="font-family:ui-rounded,'Varela Round',Nunito,sans-serif">Bulat</button><button class="gfx-opt" type="button" data-uk="uf" data-uv="tech" style="font-family:Bahnschrift,'DIN Alternate','Arial Narrow',sans-serif">Teknis</button><button class="gfx-opt" type="button" data-uk="uf" data-uv="mono" style="font-family:ui-monospace,Consolas,monospace">Mono</button><button class="gfx-opt" type="button" data-uk="uf" data-uv="serif" style="font-family:Georgia,serif">Klasik</button></div>
-    <p class="ct-sub">Gaya tombol utama</p>
-    <div class="ct-opts"><button class="gfx-opt" type="button" data-uk="ubs" data-uv="fill">Solid</button><button class="gfx-opt" type="button" data-uk="ubs" data-uv="glass">Kaca</button><button class="gfx-opt" type="button" data-uk="ubs" data-uv="outline">Garis</button></div>
-    <h3 class="ct-h">Tombol</h3>
-    <p class="ct-sub">Bentuk semua tombol</p>
-    <div id="btShapeAll" class="ct-opts"></div>
-    <p class="ct-sub">Atur satu tombol (gambar, bentuk, warna)</p>
-    <div id="btPick" class="ct-opts"></div>
-    <div class="ct-bpv"><button id="btPv" class="menu-btn" type="button">Contoh</button></div>
-    <div class="ct-opts"><button id="btImgPick" class="menu-btn" type="button">🖼 PILIH GAMBAR</button><button id="btImgDel" class="menu-btn" type="button">HAPUS GAMBAR</button></div>
-    <input id="btFile" type="file" accept="image/*" hidden>
-    <p class="ct-sub">Bentuk tombol ini</p>
-    <div id="btShapeOne" class="ct-opts"></div>
-    <p class="ct-sub">Ukuran gambar</p>
-    <div class="ct-opts"><button class="gfx-opt" type="button" data-bf="cover">Isi penuh</button><button class="gfx-opt" type="button" data-bf="contain">Muat utuh</button></div>
-    <label class="ct-rg"><span>Gelapkan gambar</span><input id="btDim" type="range" min="0" max="80"></label>
-    <label class="ct-rg"><span>Warna tombol</span><input id="btCol" type="color"><button id="btColDel" class="ct-chip" type="button">↺ bawaan</button></label>
-    <label class="set-chk"><input id="btTx" type="checkbox"><span>Sembunyikan teks tombol</span></label>
     <p id="ctStatus" class="bg-status" style="min-height:1.2em"></p>
     <button id="btnCtDel" class="menu-btn set-reset" type="button">HAPUS TEMA INI</button>
   </div>
@@ -3513,47 +3451,6 @@ const CU_PRESETS = [
   cuP('Samudra', '#021a2e', '#010c1c', '#03162a', '#06284a', '#05203a', '#29c5ff', '#29c5ff', '#7ff0ff', '#29c5ff', '#6b8bff', '#ff6b81', '#2ee6a8', '#ffd166', '#4da3ff', 'stars'),
   cuP('Monokrom', '#1c1c1c', '#0c0c0c', '#121212', '#1d1d1d', '#191919', '#a8a8a8', '#9a9a9a', '#ffffff', '#bdbdbd', '#8a8a8a', '#b0b0b0', '#8c8c8c', '#6e6e6e', '#545454', 'none')
 ];
-const CU_ENUM = { fx: ['blobs', 'stars', 'none'], uf: ['sans', 'round', 'tech', 'mono', 'serif'], ubs: ['fill', 'glass', 'outline'], ush: ['', 'pill', 'square', 'cut', 'hex', 'slant', 'oval'] };
-const CU_UI = [[50, 30, 'sans', 'fill', ''], [75, 50, 'round', 'glass', 'pill'], [35, 20, 'tech', 'outline', 'cut'], [100, 55, 'round', 'glass', 'pill'], [60, 45, 'sans', 'glass', ''], [10, 0, 'mono', 'outline', 'square']];
-CU_UI.forEach(([ur, ub, uf, ubs, ush], i) => Object.assign(CU_PRESETS[i].c, { ur, ub, uf, ubs, ush }));   // UI ikut tersimpan di tema (ur = sudut, ub = efek kaca)
-const CU_FONT = { sans: "'Segoe UI',Tahoma,Geneva,Verdana,sans-serif", round: "ui-rounded,'SF Pro Rounded','Varela Round',Nunito,'Trebuchet MS',sans-serif", tech: "Bahnschrift,'DIN Alternate','Roboto Condensed','Arial Narrow',sans-serif", mono: "ui-monospace,'Cascadia Mono',Consolas,Menlo,monospace", serif: "'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif" };
-const CU_BTN = { fill: ['linear-gradient(135deg,var(--ab1),var(--ab2))', 'transparent', '#fff'], glass: ['rgba(255,255,255,.1)', 'var(--th-bd)', '#fff'], outline: ['transparent', 'var(--ac)', 'var(--ac)'] };
-const cuUi = c => { const b = CU_BTN[c.ubs]; return { '--ur': (c.ur / 50).toFixed(2), '--u-bl': (c.ub * .2).toFixed(1) + 'px', '--u-font': CU_FONT[c.uf], '--u-b-bg': b[0], '--u-b-bd': b[1], '--u-b-fg': b[2] }; };
-/* ---------- TOMBOL KUSTOM: gambar, bentuk, warna per tombol. Gambar disimpan terpisah dari save (kunci bt_btnimg) lewat CSS dinamis, jadi teks & bahasa tombol tidak tersentuh ---------- */
-const BT_SLOTS = [['play', 'Play Game', '#btnPlay'], ['how', 'Cara Main', '#btnHowToPlay'], ['set', 'Setting', '#btnSettings'], ['surv', 'Survival', '#modeSurvival'], ['chill', 'Santai', '#modeChill'], ['shop', 'Shop', '#btnShop'], ['about', 'About Me', '#btnAbout'], ['wall', 'Wallpaper', '#btnBg'], ['donate', 'Support Me', '#btnDonate'], ['erase', 'Hapus Data', '#btnErase'], ['pause', 'Pause', '#btnPause'], ['stop', 'Stop Audio', '#btnStop'], ['menu', 'Menu', '#btnMenu'], ['start', 'Mulai Game', '#startBtn']];
-const BT_ALL = '.menu-btn:not(.close-top),.corner-btn,.mode-card,.ctrl-btn,#startBtn,.gfx-opt,.fps-opt,.shop-tab';
-const BT_SH = CU_ENUM.ush, BT_SN = ['Bawaan', 'Pil', 'Kotak', 'Potong', 'Heksagon', 'Miring', 'Oval'];
-const BT_CP = { pill: 'border-radius:999px', square: 'border-radius:0', oval: 'border-radius:50%', cut: 'border-radius:0;clip-path:polygon(12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px),0 12px)', hex: 'border-radius:0;clip-path:polygon(10% 0,90% 0,100% 50%,90% 100%,10% 100%,0 50%)', slant: 'border-radius:0;clip-path:polygon(9% 0,100% 0,91% 100%,0 100%)' };
-const BT_OK = /^data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+\/=]+$/;
-const btLoad = o => { const r = {}; Object.keys(o || {}).slice(0, 300).forEach(k => { if (/^[\w-]{1,24}:[a-z]{2,8}$/.test(k) && typeof o[k] === 'string' && o[k].length < 200000 && BT_OK.test(o[k])) r[k] = o[k]; }); return r; };   // data dari penyimpanan/file backup divalidasi ketat: hanya data:image base64
-let BT_IMG = {}, btSel = 'play';
-try { BT_IMG = btLoad(JSON.parse(localStorage.getItem('bt_btnimg'))); } catch (e) { }
-const btSave = () => { try { localStorage.setItem('bt_btnimg', JSON.stringify(BT_IMG)); return true; } catch (e) { return false; } };
-const btMerge = o => { Object.assign(BT_IMG, btLoad(o)); btSave(); };
-const btExport = () => Object.fromEntries(Object.entries(BT_IMG).filter(([k]) => save.customThemes.some(t => k.startsWith(t.id + ':'))));
-const btCopy = (a, b) => { BT_SLOTS.forEach(([k]) => { if (BT_IMG[a + ':' + k]) BT_IMG[b + ':' + k] = BT_IMG[a + ':' + k]; }); btSave(); };
-const btDrop = id => { BT_SLOTS.forEach(([k]) => delete BT_IMG[id + ':' + k]); btSave(); };
-const cbClean = b => { const o = {}; BT_SLOTS.forEach(([k]) => { const s = (b && b[k]) || {}; o[k] = { sh: BT_SH.includes(s.sh) ? s.sh : '', ft: s.ft === 'contain' ? 'contain' : 'cover', dm: Math.min(80, Math.max(0, +s.dm || 0)), tx: s.tx ? 1 : 0, cl: cuHex(s.cl) || '' }; }); return o; };
-const btDecl = sh => (BT_CP[sh] || '').split(';').filter(Boolean).map(d => d + '!important').join(';');
-function btRule(sel, s, url) {
-  let r = btDecl(s.sh);
-  if (url) { const d = (s.dm / 100).toFixed(2); r += `;background:linear-gradient(rgba(0,0,0,${d}),rgba(0,0,0,${d})),url(${url}) center/${s.ft} no-repeat ${s.cl || 'rgba(10,10,24,.55)'}!important;text-shadow:0 1px 5px rgba(0,0,0,.85)`; }
-  else if (s.cl) r += `;background:${s.cl}!important`;
-  if (s.tx) r += ';color:transparent!important;text-shadow:none!important';
-  r = r.replace(/^;/, '');
-  return r ? `${sel}{${r}}` + (s.tx ? `${sel}>*:not(.sp-chip){opacity:0!important}` : '') : '';
-}
-function btCss(th) {
-  const b = th.b || (th.b = cbClean()), p = [];
-  if (th.c.ush) p.push(`${BT_ALL}{${btDecl(th.c.ush)}}`);
-  BT_SLOTS.forEach(([k, , sel]) => p.push(btRule(sel, b[k], BT_IMG[th.id + ':' + k])));
-  p.push(btRule('#btPv', b[btSel], BT_IMG[th.id + ':' + btSel]));
-  return p.join('\n');
-}
-function btApply() {
-  let el = $('btStyle'); if (!el) { el = document.createElement('style'); el.id = 'btStyle'; document.head.appendChild(el); }
-  el.textContent = save.themeEquipped === 'custom' ? btCss(cuCur()) : '';
-}
 const cuHex = v => typeof v === 'string' && /^#[0-9a-f]{6}$/i.test(v) ? v.toLowerCase() : null;
 const cuRgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
 const cuA = (h, a) => `rgba(${cuRgb(h)},${a})`;
@@ -3562,9 +3459,9 @@ function cuClean(t) {   // data tema dari penyimpanan dibersihkan: warna harus #
   const src = (t && t.c) || {}, c = {};
   Object.entries(CU_PRESETS[0].c).forEach(([k, d]) => {
     c[k] = typeof d === 'number' ? Math.min(100, Math.max(k === 'op' ? 30 : 0, Number.isFinite(+src[k]) ? +src[k] : d))
-      : CU_ENUM[k] ? (CU_ENUM[k].includes(src[k]) ? src[k] : d) : (cuHex(src[k]) || d);
+      : k === 'fx' ? (['blobs', 'stars', 'none'].includes(src.fx) ? src.fx : d) : (cuHex(src[k]) || d);
   });
-  return { id: String((t && t.id) || 'c' + Date.now().toString(36)).slice(0, 24), name: String((t && t.name) || 'Tema saya').slice(0, 20), c, b: cbClean(t && t.b) };
+  return { id: String((t && t.id) || 'c' + Date.now().toString(36)).slice(0, 24), name: String((t && t.name) || 'Tema saya').slice(0, 20), c };
 }
 function cuCur() {
   if (!Array.isArray(save.customThemes)) save.customThemes = [];
@@ -3572,13 +3469,12 @@ function cuCur() {
   return save.customThemes.find(x => x.id === save.customId) || (save.customId = save.customThemes[0].id, save.customThemes[0]);
 }
 function cuMap(c) {
-  const m = { '--th-modal': `linear-gradient(160deg,${cuA(c.bo2, .97 - c.ub * .003)},${cuA(c.bo1, .97 - c.ub * .003)})`, '--th-card': cuA(c.cd, c.op / 100), '--th-bd': cuA(c.bd, .45), '--th-glow': cuA(c.bd, (c.gl / 100 * .6).toFixed(2)),
+  const m = { '--th-modal': `linear-gradient(160deg,${cuA(c.bo2, .97)},${cuA(c.bo1, .97)})`, '--th-card': cuA(c.cd, c.op / 100), '--th-bd': cuA(c.bd, .45), '--th-glow': cuA(c.bd, (c.gl / 100 * .6).toFixed(2)),
     '--th-board': `linear-gradient(180deg,${c.bo1},${c.bo2})`, '--th-track': cuA(c.bd, .2),
     '--th-h1': `linear-gradient(90deg,${c.t1},${c.t2} 55%,${c.t3})`, '--th-btn': `linear-gradient(135deg,${cuMix(c.ac, .55)},${cuMix(c.bd, .5)})`,
     '--ac': c.ac, '--ab1': cuMix(c.ac, .85), '--ab2': cuMix(c.bd, .75),
     '--cu-b1': c.bg1, '--cu-b2': c.bg2, '--cu-r1': cuA(c.t2, .6), '--cu-r2': cuA(c.t1, .42), '--cu-r3': cuA(c.t3, .32) };
   [0, 1, 2, 3].forEach(i => { m['--l' + i] = c['l' + i]; m['--z' + i] = cuRgb(c['l' + i]).join(','); });
-  Object.assign(m, cuUi(c));
   return m;
 }
 const cuInl = c => Object.entries(cuMap(c)).map(([k, v]) => k + ':' + v).join(';');
@@ -3586,7 +3482,6 @@ function cuVars() {   // semua warna lewat variabel CSS di <html>: tema lain dip
   const st = document.documentElement.style;
   Object.keys(cuMap(CU_PRESETS[0].c)).forEach(k => st.removeProperty(k));
   if (save.themeEquipped === 'custom') Object.entries(cuMap(cuCur().c)).forEach(([k, v]) => st.setProperty(k, v));
-  btApply();
 }
 
 const DEFAULT_ID = { owned: 'default', equipped: 'default', barOwned: 'neon', barEquipped: 'neon', hpOwned: 'default', hpEquipped: 'default',
@@ -4397,7 +4292,7 @@ btnEraseGo.addEventListener('click', async () => {
   try { await idbRun('readwrite', st => st.clear()); } catch (e) {}
   Object.keys(wpMem).forEach(k => delete wpMem[k]);
   wp = { ids: [], names: {}, active: null }; applyBackground(null);
-  save = freshSave(); BT_IMG = {}; btSave();
+  save = freshSave();
   nameInput.value = ''; renderAbout();
   applyFx(); updateSpLabels(); renderShop();
   $('saveStatus').textContent = 'Semua data sudah dihapus.';
@@ -4409,7 +4304,7 @@ const accMsg = t => { $('accStatus').textContent = t; };
 const L10 = t => (typeof LANG !== 'undefined' && LANG === 'en') ? i18nT(t) : t;
 function downloadAccount() {
   flushPending();
-  const data = { app: 'rhythmBeat', v: SAVE_VER, exportedAt: new Date().toISOString(), save: { v: SAVE_VER, ...save }, btImg: btExport() };
+  const data = { app: 'rhythmBeat', v: SAVE_VER, exportedAt: new Date().toISOString(), save: { v: SAVE_VER, ...save } };
   const d = new Date(), pad = n => String(n).padStart(2, '0');
   const nm = (save.name || 'akun').replace(/[^\w-]+/g, '_').slice(0, 20) || 'akun';
   const a = document.createElement('a');
@@ -4424,13 +4319,13 @@ $('btnAccUp').addEventListener('click', () => $('accFile').click());
 $('accFile').addEventListener('change', async e => {
   const f = e.target.files[0]; e.target.value = ''; if (!f) return;
   try {
-    if (f.size > 4e6) throw 0;
+    if (f.size > 2e6) throw 0;
     const j = JSON.parse(await f.text());
     const d = normSave(j && j.app === 'rhythmBeat' ? j.save : null);
     if (!d) throw 0;
     if (!confirm(L10('Pulihkan akun dari file ini? Akun saat ini akan diganti.') + `\n\n${d.name || 'User'} · ${d.sp} SP`)) return;
     if (isPlaying) stopGame('AKUN DIPULIHKAN. PILIH LAGU');
-    save = freshSave(); mergeSaves([d]); persist(); btMerge(j.btImg);
+    save = freshSave(); mergeSaves([d]); persist();
     nameInput.value = save.name; applyFx(); updateSpLabels(); renderAbout(); renderShop(); crownUi();
     if (save.donor && !save.crown) askKing();
     accMsg('Akun berhasil dipulihkan.');
@@ -5195,8 +5090,6 @@ function cuFill() {
   const cur = cuCur(), c = cur.c;
   ctModal.querySelectorAll('input[data-k]').forEach(i => { i.value = c[i.dataset.k]; });
   ctModal.querySelectorAll('#ctFx .gfx-opt').forEach(b => b.classList.toggle('on', b.dataset.fx === c.fx));
-  ctModal.querySelectorAll('button[data-uk]').forEach(b => b.classList.toggle('on', c[b.dataset.uk] === b.dataset.uv));
-  btFill();
   ctName.value = cur.name;
   ctChips.innerHTML = '';
   save.customThemes.forEach(t => { const b = document.createElement('button'); b.type = 'button'; b.className = 'ct-chip' + (t.id === cur.id ? ' on' : ''); b.textContent = t.name; b.dataset.id = t.id; ctChips.appendChild(b); });
@@ -5224,64 +5117,12 @@ ctModal.addEventListener('click', e => {
   else if (b.dataset.fx) { cur.c.fx = b.dataset.fx; cuFill(); cuSync(true); }
   else if (b.id === 'btnCtNew') {
     if (save.customThemes.length >= CU_MAX) return;
-    const t = cuClean({ name: 'Tema saya ' + (save.customThemes.length + 1), c: cur.c, b: cur.b });
-    save.customThemes.push(t); btCopy(cur.id, t.id); save.customId = t.id; cuFill(); cuSync(true);
+    const t = cuClean({ name: 'Tema saya ' + (save.customThemes.length + 1), c: cur.c });
+    save.customThemes.push(t); save.customId = t.id; cuFill(); cuSync(true);
   } else if (b.id === 'btnCtDel') {
     if (save.customThemes.length < 2) return;
-    btDrop(cur.id); save.customThemes = save.customThemes.filter(x => x.id !== cur.id); save.customId = save.customThemes[0].id; cuFill(); cuSync(true);
+    save.customThemes = save.customThemes.filter(x => x.id !== cur.id); save.customId = save.customThemes[0].id; cuFill(); cuSync(true);
   } else if (b.id === 'btnCtClose') ctModal.classList.add('hidden');
-});
-ctModal.addEventListener('click', e => { const b = e.target.closest('button[data-uk]'); if (!b) return; cuCur().c[b.dataset.uk] = b.dataset.uv; cuFill(); cuSync(false); });
-const btChips = a => BT_SH.map((v, i) => `<button class="gfx-opt" type="button" data-${a}="${v}">${i === 0 && a === 'bso' ? 'Ikut semua' : BT_SN[i]}</button>`).join('');
-const btShrink = f => new Promise(ok => {   // gambar diperkecil (maks 320px) supaya ringan & muat di penyimpanan
-  const im = new Image(), u = URL.createObjectURL(f);
-  im.onload = () => {
-    URL.revokeObjectURL(u);
-    const w = im.naturalWidth || 256, h = im.naturalHeight || 256;
-    for (const m of [320, 224, 144]) {
-      const r = Math.min(1, m / Math.max(w, h)), cv = document.createElement('canvas');
-      cv.width = Math.max(1, Math.round(w * r)); cv.height = Math.max(1, Math.round(h * r));
-      cv.getContext('2d').drawImage(im, 0, 0, cv.width, cv.height);
-      const d = cv.toDataURL('image/webp', .85); if (d.length < 90000) return ok(d);
-    }
-    ok('');
-  };
-  im.onerror = () => { URL.revokeObjectURL(u); ok(''); }; im.src = u;
-});
-function btFill() {
-  const th = cuCur(), s = (th.b || (th.b = cbClean()))[btSel], has = k => BT_IMG[th.id + ':' + k];
-  if (!$('btShapeAll').firstChild) { $('btShapeAll').innerHTML = btChips('bsa'); $('btShapeOne').innerHTML = btChips('bso'); }
-  $('btPick').innerHTML = BT_SLOTS.map(([k, l]) => `<button class="gfx-opt${k === btSel ? ' on' : ''}${has(k) ? ' has' : ''}" type="button" data-bs="${k}">${l}</button>`).join('');
-  ctModal.querySelectorAll('#btShapeAll .gfx-opt').forEach(x => x.classList.toggle('on', x.dataset.bsa === th.c.ush));
-  ctModal.querySelectorAll('#btShapeOne .gfx-opt').forEach(x => x.classList.toggle('on', x.dataset.bso === s.sh));
-  ctModal.querySelectorAll('[data-bf]').forEach(x => x.classList.toggle('on', x.dataset.bf === s.ft));
-  $('btDim').value = s.dm; $('btTx').checked = !!s.tx; $('btCol').value = s.cl || '#2a2a40'; $('btImgDel').disabled = !has(btSel);
-  $('btPv').textContent = BT_SLOTS.find(x => x[0] === btSel)[1];
-}
-ctModal.addEventListener('click', e => {
-  const b = e.target.closest('button'); if (!b) return;
-  const d = b.dataset, th = cuCur(), s = (th.b || (th.b = cbClean()))[btSel];
-  if (d.bs) btSel = d.bs;
-  else if ('bsa' in d) th.c.ush = d.bsa;
-  else if ('bso' in d) s.sh = d.bso;
-  else if (d.bf) s.ft = d.bf;
-  else if (b.id === 'btColDel') s.cl = '';
-  else if (b.id === 'btImgPick') return $('btFile').click();
-  else if (b.id === 'btImgDel') { delete BT_IMG[th.id + ':' + btSel]; btSave(); }
-  else return;
-  btFill(); cuSync(false);
-});
-ctModal.addEventListener('input', e => {
-  const t = e.target, th = cuCur(), s = (th.b || (th.b = cbClean()))[btSel];
-  if (t.id === 'btDim') s.dm = +t.value; else if (t.id === 'btTx') s.tx = t.checked ? 1 : 0; else if (t.id === 'btCol') s.cl = cuHex(t.value) || ''; else return;
-  cuSync(false);
-});
-$('btFile').addEventListener('change', async e => {
-  const f = e.target.files[0]; e.target.value = ''; if (!f) return;
-  const u = await btShrink(f), th = cuCur();
-  if (!u) { ctSt.textContent = 'Gambar tidak bisa dipakai (rusak atau terlalu besar).'; return; }
-  BT_IMG[th.id + ':' + btSel] = u; const ok = btSave(); btFill(); cuSync(false);
-  if (!ok) setTimeout(() => { ctSt.textContent = 'Penyimpanan penuh: gambar hanya bertahan selama halaman terbuka.'; }, 500);
 });
 function cuSetState() {
   const own = save.themeOwned.includes('custom');
@@ -5296,8 +5137,6 @@ cuVars();
 
 /* ---------- Bahasa (Indonesia / English): kamus + penerjemah runtime. Saat Indonesia aktif, pengamat mati = nol beban ---------- */
 const I18N_EN = {"Ketuk tombol di kanan, lalu tekan tombol keyboard yang kamu mau (Esc = batal). Kalau tombolnya sudah dipakai lane lain, keduanya otomatis ditukar. P = Pause dan R = Stop tidak bisa dipakai. Controller tetap L2, L1, R1, R2.": "Tap a button on the right, then press the keyboard key you want (Esc = cancel). If the key is already used by another lane, the two are swapped automatically. P = Pause and R = Stop cannot be used. Controller stays L2, L1, R1, R2.", "HAPUS DATA": "DELETE DATA", "CARA MAIN": "HOW TO PLAY", "PILIH MODE": "SELECT MODE", "😌 SANTAI": "😌 CHILL", "Tanpa game over, tanpa SP dari bit, miss tidak mengurangi SP, tanpa bonus durasi.": "No game over, no SP from notes, misses don't reduce SP, no duration bonus.", "← KEMBALI": "← BACK", "Wallpaper mendukung JPG, PNG, dan GIF animasi (bisa simpan beberapa).": "Wallpapers support JPG, PNG, and animated GIF (you can save several).", "✕ TUTUP": "✕ CLOSE", "+ TAMBAH (JPG / PNG / GIF)": "+ ADD (JPG / PNG / GIF)", "PAKAI BACKGROUND BAWAAN": "USE DEFAULT BACKGROUND", "Nama kamu (muncul di ucapan selamat):": "Your name (shown in congratulations):", "SIMPAN": "SAVE", "Rank sekarang · ketuk ▶": "Current rank · tap ▶", "Belum ada rank": "No rank yet", "Rank tertinggi": "Highest rank", "Syarat: Pemula ≥0% · Amateur ≥40% · Semi Pro ≥60% · Pro ≥75% · Epic ≥85% · Legend ≥92% · Godly ≥97% · Admin 100% (benar semua)": "Requirements: Beginner ≥0% · Amateur ≥40% · Semi Pro ≥60% · Pro ≥75% · Epic ≥85% · Legend ≥92% · Godly ≥97% · Admin 100% (all correct)", "Kesimpulan": "Summary", "Combo tertinggi": "Highest combo", "Total bit ditekan": "Total notes pressed", "Total lagu dimainkan": "Total songs played", "SP yang pernah didapat seluruhnya": "All-time SP earned", "Hasil Lagu Terakhir": "Last Song Result", "Belum ada lagu yang diselesaikan.": "No song completed yet.", "Punya kode? Masukkan di sini:": "Have a code? Enter it here:", "Hapus Semua Data?": "Delete All Data?", "SP, semua item shop, dan item yang sedang dipakai akan dihapus.": "SP, all shop items, and equipped items will be deleted.", "Semua wallpaper yang tersimpan juga dihapus.": "All saved wallpapers will also be deleted.", "Tindakan ini tidak bisa dibatalkan.": "This action cannot be undone.", "Ketik": "Type", "untuk melanjutkan:": "to continue:", "HAPUS PERMANEN": "DELETE PERMANENTLY", "BATAL": "CANCEL", "Cara Bermain": "How to Play", "(→) saat panah yang turun tepat berada di bar hit. Tombol bisa diganti di menu ⚙ Setting.": "(→) when the falling arrow is exactly on the hit bar. Keys can be changed in the ⚙ Setting menu.", "🎮 Tombol": "🎮 Keys", "↺ KEMBALIKAN KE A S K L": "↺ RESET TO A S K L", "📱 Layar": "📱 Screen", "KECIL": "SMALL", "tampilan sekarang": "current view", "PENUH": "FULL", "papan layar penuh": "fullscreen board", "Penjaga FPS": "FPS Guard", "Bila FPS turun di bawah batas aman (±48), efek diturunkan otomatis sampai lancar lagi, walau grafik Normal. Matikan hanya kalau kamu ingin efek penuh apa pun yang terjadi.": "If FPS drops below the safe limit (±48), effects are lowered automatically until smooth again, even on Normal graphics. Turn off only if you want full effects no matter what.", "Tampilkan FPS di layar": "Show FPS on screen", "Penghitung kecil di pojok kiri atas saat bermain.": "A small counter in the top-left corner while playing.", "🖥 Grafik": "🖥 Graphics", "animasi lebih sedikit": "fewer animations", "animasi penuh": "full animations", "↺ Atur otomatis sesuai perangkat": "↺ Auto-set for this device", "🎁 PAKET EKSKLUSIF": "🎁 EXCLUSIVE PACKS", "🎨 Tema Game": "🎨 Game Themes", "Animasi Bit": "Note Animation", "Bar Durasi": "Duration Bar", "Hit Bit": "Note Hit", "Bar Hit": "Hit Bar", "SP kamu:": "Your SP:", "Hasil Game": "Game Result", "Skor": "Score", "Bit berhasil ditekan": "Notes hit", "Persentase kemenangan": "Win percentage", "SP didapat": "SP earned", "🎵 Keterangan Lagu": "🎵 Song Info", "Judul": "Title", "Durasi": "Duration", "Total bit terdeteksi": "Total notes detected", "Bit tertekan": "Notes hit", "MAIN LAGI": "PLAY AGAIN", "Bit berhasil": "Notes hit", "Progres lagu": "Song progress", "SP bersih game ini": "Net SP this game", "COBA LAGI": "TRY AGAIN", "Skor:": "Score:", "Belum ada lagu": "No song yet", "PILIH LAGU": "SELECT SONG", "Batal": "Cancel", "Mulai Game": "Start Game", "Memuat…": "Loading…", "Tutup": "Close", "Masukkan kode": "Enter code", "▶ Lanjut (P)": "▶ Resume (P)", "KEMBALI KE GAME": "BACK TO GAME", "mengisi ulang": "recharging", "⚡ Perangkat berat terdeteksi: efek dikurangi otomatis (level": "⚡ Heavy device detected: effects reduced automatically (level", "/3) agar FPS tetap lancar": "/3) to keep FPS smooth", "BERSIAP...": "GET READY...", "MAIN!": "PLAY!", "STOP. PILIH LAGU": "STOP. SELECT A SONG", "STOP. PILIH LAGU BARU": "STOP. SELECT A NEW SONG", "· menghitung estimasi waktu…": "· estimating time…", "· sisa ±": "· remaining ±", "· selesai sekitar": "· done in about", "MEMUAT LAGU...": "LOADING SONG...", "Memuat lagu…": "Loading song…", "MEMINDAI LAGU...": "SCANNING SONG...", "Mengekstrak audio dari video…": "Extracting audio from video…", "(video besar butuh beberapa detik)": "(large videos take a few seconds)", "Membaca file audio…": "Reading audio file…", "Menyiapkan pemindaian…": "Preparing scan…", "SIAP! (": "READY! (", "BIT": "NOTES", "IRAMA TIDAK TERDETEKSI": "RHYTHM NOT DETECTED", "FILE TERLALU BESAR (MAKS 500 MB)": "FILE TOO LARGE (MAX 500 MB)", "AUDIO VIDEO TIDAK BISA DIBACA (PASTIKAN ADA SUARA, FORMAT AAC)": "VIDEO AUDIO CANNOT BE READ (MAKE SURE IT HAS SOUND, AAC FORMAT)", "GAGAL MEMUAT LAGU": "FAILED TO LOAD SONG", "PEMINDAIAN DIBATALKAN": "SCAN CANCELLED", "Menyiapkan audio": "Preparing audio", "Menganalisis spektrum": "Analyzing spectrum", "Mencari tempo": "Finding tempo", "Menguji kandidat tempo": "Testing tempo candidates", "Melacak ketukan": "Tracking beats", "Memilih bit": "Choosing notes", "Menyusun pola": "Building pattern", "Selesai": "Done", "TUNGGU, LAGU MASIH DIPINDAI": "WAIT, SONG IS STILL SCANNING", "UPLOAD LAGU DULU YA!": "UPLOAD A SONG FIRST!", "Menyiapkan audio…": "Preparing audio…", "Memuat font & efek…": "Loading fonts & effects…", "Memanaskan tampilan…": "Warming up display…", "Menstabilkan frame…": "Stabilizing frames…", "Siap!": "Ready!", "SELESAI! SKOR": "DONE! SCORE", "Es Pecah": "Shattered Ice", "Neon Standar": "Standard Neon", "Ekor cahaya, cincin, dan percikan.": "Light trail, rings, and sparks.", "Komet": "Comet", "Meluncur seperti komet, meledak jadi garis cahaya.": "Streaks like a comet, bursts into lines of light.", "Kristal": "Crystal", "Berkilau saat turun, pecah jadi serpihan.": "Sparkles as it falls, shatters into shards.", "Api": "Fire", "Berkobar saat turun, meledak jadi bola api.": "Blazes as it falls, explodes into a fireball.", "Bar cahaya biru neon sederhana.": "Simple neon blue light bar.", "Tanah & Rumput": "Soil & Grass", "Rumput hijau di atas tanah coklat 2D. Rumput bergoyang, cahaya berkilau, serbuk sari melayang, tunas tumbuh di ujung bar.": "Green grass on 2D brown soil. Grass sways, light glimmers, pollen floats, a sprout grows at the bar's tip.", "Lantai Kastil": "Castle Floor", "Lantai batu kastil dengan list emas. Obor menyala memantulkan cahaya hangat dan percikan api.": "Castle stone floor with gold trim. Torches reflect warm light and sparks.", "Galaksi": "Galaxy", "Nebula mengalir, bintang berkelip, bintang jatuh, dan komet bercahaya di ujung bar.": "Flowing nebula, twinkling stars, shooting stars, and a glowing comet at the bar's tip.", "Prisma Admin": "Admin Prism", "Bit pelangi berputar dengan ekor cahaya.": "Spinning rainbow note with a light trail.", "Bar durasi pelangi mengalir dengan bintang berkilau.": "Flowing rainbow duration bar with sparkling stars.", "Standar": "Standard", "Health bar merah-hijau bawaan.": "Default red-green health bar.", "Health bar pelangi mengalir dengan kilau.": "Flowing rainbow health bar with shimmer.", "Efek hit mengikuti animasi bit yang dipakai.": "Hit effect follows the equipped note animation.", "Ledakan Bintang": "Star Burst", "Gelombang cahaya dan semburan bintang pelangi saat bit kena.": "Light waves and a burst of rainbow stars on hit.", "Zona target polos.": "Plain target zone.", "Lubang Hitam Galaksi": "Galaxy Black Hole", "Bar hit berwarna galaksi: nebula berputar dan bintang berkelip. Saat ditekan, lubang hitam terbuka dan bit tersedot masuk ke dalamnya.": "Galaxy-colored hit bar: swirling nebula and twinkling stars. When pressed, a black hole opens and the note is sucked in.", "Pemindai Pelangi": "Rainbow Scanner", "Garis cahaya memindai dan bingkai berganti warna pelangi.": "A line of light scans and the frame cycles through rainbow colors.", "Tanpa Animasi": "No Animation", "Border game polos (bawaan).": "Plain game border (default).", "Badai Petir": "Thunderstorm", "Hujan petir menyelimuti game. Warna dan derasnya berubah mengikuti combo: kuning (0-9), biru (10-29), merah (30+).": "A lightning storm covers the game. Color and intensity change with combo: yellow (0-9), blue (10-29), red (30+).", "Galaksi Epik": "Epic Galaxy", "Nebula, planet bercincin, bintang berjatuhan, dan roket yang melesat di sepanjang border berwarna kosmik.": "Nebula, ringed planets, falling stars, and rockets zooming along a cosmic-colored border.", "Bunga Sakura": "Sakura Flower", "Bit berbentuk bunga sakura berputar dengan ekor kelopak.": "Spinning sakura-flower note with a petal trail.", "Sungai Sakura": "Sakura River", "Bar durasi merah muda mengalir, bunga sakura berputar di ujungnya.": "Flowing pink duration bar with a spinning sakura flower at its tip.", "Kelopak Hidup": "Living Petals", "Health bar sakura bercahaya dengan kilau kelopak.": "Glowing sakura health bar with petal shimmer.", "Hujan Kelopak": "Petal Rain", "Kilatan merah muda dan semburan kelopak saat bit kena.": "Pink flashes and a burst of petals on hit.", "Taman Hanami": "Hanami Garden", "Bar hit bernuansa sakura: kerlip kelopak dan bunga di tiap zona.": "Sakura-themed hit bar: twinkling petals and flowers in every zone.", "Hanami Malam": "Night Hanami", "Dahan sakura berbunga, kelopak berguguran tanpa henti, dan bingkai bercahaya merah muda.": "Blooming sakura branches, endlessly falling petals, and a glowing pink frame.", "Salju Beku": "Frozen Snow", "Bit berupa bola salju yang terbungkus kristal es, berputar bercahaya saat dekat, dengan jejak es runcing dan serpihan kristal di belakangnya.": "A snowball wrapped in ice crystals that spins and glows when near, trailing sharp ice and crystal shards.", "Sungai Es Beku": "Frozen Ice River", "Bar durasi es biru mengalir dengan salju di atasnya dan kepingan salju berputar di ujung.": "Flowing blue ice duration bar with snow on top and a spinning snowflake at the tip.", "Es Bersalju": "Snowy Ice", "Health bar es yang tertutup tumpukan salju, dengan es menggantung di bawahnya.": "Ice health bar covered in piled snow, with icicles hanging below.", "Retakan bintang, serpihan es beterbangan, dan serbuk salju saat bit kena. Layar ikut bergoyang tiap hit.": "Star-shaped cracks, flying ice shards, and snow dust on hit. The screen shakes with every hit.", "Dermaga Es": "Ice Pier", "Bar hit es 10% lebih lebar, bersalju di atas dan es menggantung di bawah.": "Ice hit bar 10% wider, snowy on top with icicles hanging below.", "Padang Mamut": "Mammoth Field", "Padang es bersalju: pegunungan es, salju turun, dan mamot beserta anaknya berjalan melintas.": "Snowy ice field: icy mountains, falling snow, and a mammoth with its calf walking by.", "Bit Batu Lahar": "Lava Rock Note", "Kotak batu vulkanik berkerak: retakan lahar makin menyala saat mendekati bar hit, jejak lahar menetes di belakangnya, dan bit yang lolos mendingin jadi batu mati.": "A crusted volcanic rock block: lava cracks glow brighter near the hit bar, lava drips behind it, and missed notes cool into dead rock.", "Sungai Lahar": "Lava River", "Bar durasi lahar mengalir dengan kerak batu hitam, dan api menyala di ujungnya.": "Flowing lava duration bar with a black rock crust and a flame burning at its tip.", "Magma Hidup": "Living Magma", "Health bar magma mengalir, berkerak batu di atas dan lahar menetes di bawahnya.": "Flowing magma health bar, rock-crusted on top with lava dripping below.", "Lahar Muncrat": "Lava Spray", "Batu Lahar Mati": "Dead Lava Rock", "Bar hit dari batu lahar yang sudah mengeras dan gelap. Saat ditekan, retakan oranye lahar menyebar dan menyala.": "Hit bar of hardened dark lava rock. When pressed, orange lava cracks spread and glow.", "Gunung Meletus": "Erupting Volcano", "Bola Petir": "Lightning Orbs", "Bola ungu, hijau, oranye, dan kuning dikelilingi petir yang menyambar dan berputar.": "Purple, green, orange, and yellow orbs surrounded by striking, swirling lightning.", "Arus Penyemangat": "Energizing Current", "Bar durasi dialiri listrik hijau, kuning, dan oranye dengan bola energi di ujungnya.": "Duration bar flowing with green, yellow, and orange electricity and an energy orb at its tip.", "Kabel Liar": "Wild Wires", "Health bar dengan listrik acak-acakan tiga warna yang berkedip tak beraturan.": "Health bar with chaotic three-color electricity flickering irregularly.", "Sambaran Petir": "Lightning Strike", "Petir memancar ke segala arah dari titik hit, lengkap dengan kilat dan percikan.": "Lightning radiates in every direction from the hit point, with flashes and sparks.", "Gardu Petir": "Lightning Substation", "Zona hit bergaris listrik yang berkedip, menyala terang saat ditekan.": "Hit zone lined with flickering electricity that glows bright when pressed.", "Arus Liar": "Wild Current", "Arus listrik acak mengalir turun di papan, dengan kilatan petir dari atas.": "Random electric current flows down the board, with lightning flashes from above.", "Auto-save aktif · tersimpan": "Auto-save on · saved", "Neon Bawaan": "Default Neon", "Tema ungu-biru neon dengan gumpalan cahaya yang melayang pelan. Zona target berwarna sesuai lane.": "Purple-blue neon theme with slowly drifting blobs of light. Target zones are colored per lane.", "Langit malam berbintang dengan tirai aurora hijau, biru, dan ungu yang meliuk. Bintang jatuh melintas, gunung berselimut cahaya, dan papan ikut berpendar saat combo naik.": "A starry night sky with winding green, blue, and purple aurora curtains. Shooting stars pass, mountains glow, and the board shimmers as combo rises.", "Senja Synthwave": "Synthwave Dusk", "Matahari retro bergaris di atas kota neon, lantai grid merah muda yang melaju ke arahmu. Makin tinggi combo, grid makin ngebut dan papan makin menyala.": "A retro striped sun over a neon city, with a pink grid floor racing toward you. The higher the combo, the faster the grid and the brighter the board.", "(tidak tersimpan: penyimpanan browser diblokir)": "(not saved: browser storage is blocked)", "Polos": "Plain", "🎁 Khusus": "🎁 Special", "🔒 Paket Secret": "🔒 Secret Pack", "Gratis": "Free", "🎁 BUKA LEWAT PAKET": "🎁 UNLOCK VIA PACK", "🔒 TERBUKA SETELAH 3 GAME 100% BERTURUT-TURUT": "🔒 UNLOCKED AFTER 3 GAMES AT 100% IN A ROW", "BELI": "BUY", "dibeli dan dipakai. Sisa SP:": "bought and equipped. Remaining SP:", "⚡ LISTRIK PENYEMANGAT TERBUKA ⚡": "⚡ ENERGIZING LIGHTNING UNLOCKED ⚡", "🏆 PAKET TERBAIK": "🏆 BEST PACK", "Paket Volcanic": "Volcanic Pack", "Paket terbaik · lahar · batu vulkanik · gunung api · 6 item eksklusif": "Best pack · lava · volcanic rock · volcano · 6 exclusive items", "Bit Kotak Lahar + jejak lahar": "Lava Block Note + lava trail", "Lahar Muncrat 2.0 + desis": "Lava Spray 2.0 + hiss", "Batu Lahar Mati (retak menyala)": "Dead Lava Rock (glowing cracks)", "Paket Sakura": "Sakura Pack", "Paket tema sakura · 6 item eksklusif": "Sakura theme pack · 6 exclusive items", "Paket Listrik Penyemangat": "Energizing Lightning Pack", "⚡ LISTRIK PENYEMANGAT ⚡": "⚡ ENERGIZING LIGHTNING ⚡", "Petir hijau · kuning · oranye · 6 item eksklusif": "Green · yellow · orange lightning · 6 exclusive items", "Paket Glasier Es": "Ice Glacier Pack", "❄️ GLASIER ES ❄️": "❄️ ICE GLACIER ❄️", "Es · salju · kristal · mamot · 6 item eksklusif": "Ice · snow · crystal · mammoth · 6 exclusive items", "Es Pecah + layar goyang": "Shattered Ice + screen shake", "Dermaga Es (+10% lebar)": "Ice Pier (+10% width)", "✔ SUDAH DIMILIKI": "✔ ALREADY OWNED", "DIPAKAI": "EQUIPPED", "PAKAI SEMUA": "EQUIP ALL", "dipakai.": "equipped.", "terbeli! Semua item terbuka dan otomatis dipakai.": "purchased! All items unlocked and equipped automatically.", "❄️ PAKET GLASIER ES TERBUKA ❄️": "❄️ ICE GLACIER PACK UNLOCKED ❄️", "🌸 PAKET SAKURA TERBUKA 🌸": "🌸 SAKURA PACK UNLOCKED 🌸", "+0 · Mode Santai tidak memberi SP (total": "+0 · Chill mode gives no SP (total", "🎉 Selamat,": "🎉 Congratulations,", "✨ Rank pertamamu!": "✨ Your first rank!", "PAKET SECRET TERBUKA!": "SECRET PACK UNLOCKED!", "Dapat: animasi bit, bar durasi, health bar, hit bit, dan bar hit bit. Pakai di Shop.": "Got: note animation, duration bar, health bar, note hit, and hit bar. Equip them in the Shop.", "🔥 Streak 100% benar:": "🔥 100% correct streak:", "file tidak bisa dibaca": "file cannot be read", "format gambar tidak didukung browser": "image format not supported by browser", "IndexedDB tidak tersedia": "IndexedDB is not available", "Wallpaper lama": "Old wallpaper", "Data wallpaper tidak ditemukan.": "Wallpaper data not found.", "Wallpaper dihapus.": "Wallpaper deleted.", "Belum ada wallpaper. Tambahkan JPG, PNG, atau GIF.": "No wallpapers yet. Add a JPG, PNG, or GIF.", "PAKAI": "USE", "HAPUS": "DELETE", "Background bawaan dipakai.": "Default background in use.", "Penuh (maks": "Full (max", "wallpaper). Hapus salah satu dulu.": "wallpapers). Delete one first.", "GIF terlalu besar (maksimal 12 MB).": "GIF is too large (maximum 12 MB).", "Memproses...": "Processing...", "Wallpaper ditambahkan dan tersimpan.": "Wallpaper added and saved.", "Wallpaper aktif, tapi tidak tersimpan (penyimpanan browser diblokir atau penuh).": "Wallpaper active, but not saved (browser storage is blocked or full).", "Gagal memuat gambar (": "Failed to load image (", "). Coba file lain.": "). Try another file.", "DATA DIHAPUS. PILIH LAGU": "DATA DELETED. SELECT A SONG", "Semua data sudah dihapus.": "All data has been deleted.", "Pemula": "Beginner", "PENGUASA SISTEM": "SYSTEM RULER", "SANG DEWA RITME": "GOD OF RHYTHM", "⬇ RANK TURUN": "⬇ RANK DOWN", "Halo,": "Hello,", "Syarat:": "Requirements:", "Admin 100% (benar semua)": "Admin 100% (all correct)", "🎁 Paket secret sudah terbuka, pakai di Shop.": "🎁 Secret pack unlocked, equip it in the Shop.", "🎁 Paket secret:": "🎁 Secret pack:", "/3 game berturut-turut dengan 100% benar.": "/3 games in a row with 100% correct.", "Nama disimpan:": "Name saved:", "Nama aktif, tapi tidak tersimpan (penyimpanan browser diblokir).": "Name active, but not saved (browser storage is blocked).", "Nama dikosongkan, kamu akan disapa sebagai \"User\".": "Name cleared, you will be greeted as \"User\".", "Masukkan kode dulu.": "Enter a code first.", "Kode salah. Coba lagi.": "Wrong code. Try again.", "Kode ini sudah pernah dipakai (hanya bisa 1 kali).": "This code has already been used (one use only).", "🎉 Kode benar! +": "🎉 Code accepted! +", "MODE SURVIVAL 💀 · PILIH LAGU": "SURVIVAL MODE 💀 · SELECT SONG", "MODE SANTAI 😌 · PILIH LAGU": "CHILL MODE 😌 · SELECT SONG", "HP habis di": "Out of HP at", "Kiri": "Left", "Bawah": "Down", "Atas": "Up", "Kanan": "Right", "TEKAN TOMBOL…": "PRESS A KEY…", "Dibatalkan.": "Cancelled.", "Tombol P dipakai untuk Pause. Pilih tombol lain.": "The P key is used for Pause. Choose another key.", "Tombol R dipakai untuk Stop. Pilih tombol lain.": "The R key is used for Stop. Choose another key.", "Tombol itu tidak bisa dipakai. Pilih tombol lain.": "That key cannot be used. Choose another key.", "sekarang:": "now:", "(ditukar dengan Lane": "(swapped with Lane", "Tekan tombol keyboard untuk Lane": "Press a keyboard key for Lane", "Tombol dikembalikan ke A S K L.": "Keys reset to A S K L.", "Tampilan seperti sekarang: papan di dalam kartu, pilihan lagu selalu terlihat.": "Current view: the board inside a card, song selection always visible.", "Papan game memenuhi layar dan semuanya diperbesar. Pilihan lagu hanya muncul di awal, saat pause, dan setelah stop/reset. Di layar lebar, papan mengikuti tinggi layar agar lajurnya tidak melar.": "The game board fills the screen and everything is scaled up. Song selection only appears at the start, when paused, and after stop/reset. On wide screens, the board follows the screen height so the lanes don't stretch.", "Batas FPS game:": "Game FPS limit:", "Hz, jadi yang berjalan ±": "Hz, so it runs at ±", "Pilihan di atas refresh layar tidak menambah kehalusan.": "Options above the screen refresh rate add no smoothness.", "Lebih hemat baterai & panas, gerak bit sedikit kurang halus.": "Saves battery & heat, note motion slightly less smooth.", "Semua animasi tampil penuh seperti aslinya. (Hanya bila Penjaga FPS menyala dan perangkat tidak kuat, efek diturunkan otomatis agar tetap lancar.)": "All animations shown in full as designed. (Only if FPS Guard is on and the device is weak are effects lowered automatically to stay smooth.)", "Animasi dikurangi sedikit: partikel, kilau, jejak, dan latar bergerak disederhanakan supaya game lebih ringan.": "Slightly reduced animations: particles, shimmer, trails, and moving backgrounds are simplified to make the game lighter.", "HP habis = game over · tiap miss −1 SP · bonus 50 SP per menit durasi lagu bila tamat.": "Out of HP = game over · each miss −1 SP · +50 SP per minute of song length if finished.", "1. Upload lagu favoritmu (MP3, M4A, WAV, OGG, atau video MP4).": "1. Upload your favorite song (MP3, M4A, WAV, OGG, or MP4 video).", "2. Tunggu proses scanning bass/beat selesai.": "2. Wait for the bass/beat scan to finish.", "3. Tekan": "3. Press", "4. Dukungan Controller/Gamepad (L2, L1, R1, R2) dan layar sentuh.": "4. Controller/Gamepad (L2, L1, R1, R2) and touchscreen supported.", "5. Tombol": "5. The", "= Pause/Lanjut (menghentikan game dan lagu). Tombol": "= Pause/Resume (stops the game and song). The", "= Stop Audio, menghentikan semuanya dan melepas lagu agar kamu bisa ganti lagu. Setiap mulai atau lanjut dari pause ada hitungan 3-2-1.": "= Stop Audio, stops everything and releases the song so you can change songs. Every start or resume from pause has a 3-2-1 countdown.", "6. Tombol Menu (atau Esc) membuka halaman utama kapan saja. Game otomatis di-pause.": "6. The Menu button (or Esc) opens the main page any time. The game pauses automatically.", "7. Di mode": "7. In", ", setiap bit yang berhasil ditekan = 1 SP (mode Santai tidak memberi SP). Tukar SP di Shop untuk animasi bit atau tampilan bar durasi baru.": ", every note hit = 1 SP (Chill mode gives no SP). Trade SP in the Shop for note animations or new duration bar looks.", "▲ NAIK dari": "▲ UP from", "▼ TURUN dari": "▼ DOWN from", "🌐 Bahasa": "🌐 Language", "Pilih bahasa tampilan game.": "Choose the game display language."};
-Object.assign(I18N_EN, {"Tombol": "Buttons", "Bentuk semua tombol": "Shape of all buttons", "Atur satu tombol (gambar, bentuk, warna)": "Edit one button (image, shape, color)", "Bentuk tombol ini": "Shape of this button", "Ukuran gambar": "Image size", "Bawaan": "Default", "Ikut semua": "Follow all", "Pil": "Pill", "Kotak": "Square", "Potong": "Cut", "Heksagon": "Hexagon", "Miring": "Slanted", "Oval": "Oval", "Isi penuh": "Fill", "Muat utuh": "Fit", "Gelapkan gambar": "Dim image", "Warna tombol": "Button color", "↺ bawaan": "↺ default", "Sembunyikan teks tombol": "Hide button text", "Contoh": "Preview", "🖼 PILIH GAMBAR": "🖼 CHOOSE IMAGE", "HAPUS GAMBAR": "REMOVE IMAGE", "Cara Main": "How to Play", "Santai": "Chill", "Hapus Data": "Erase Data", "Mulai Game": "Start Game", "Gambar tidak bisa dipakai (rusak atau terlalu besar).": "This image can't be used (corrupt or too large).", "Penyimpanan penuh: gambar hanya bertahan selama halaman terbuka.": "Storage full: the image only lasts while this page is open."});
-Object.assign(I18N_EN, {"Bentuk & gaya UI": "UI shape & style", "Sudut membulat": "Corner roundness", "Efek kaca": "Glass effect", "Font": "Font", "Standar": "Standard", "Bulat": "Rounded", "Teknis": "Technical", "Mono": "Mono", "Klasik": "Classic", "Gaya tombol utama": "Primary button style", "Solid": "Solid", "Kaca": "Glass", "Garis": "Outline"});
 Object.assign(I18N_EN, {"Auto-save aktif": "Auto-save on", "SIAP!": "READY!", "irama lemah": "weak rhythm", "dari cache": "from cache", "BELI PAKET": "BUY PACK", "SP KURANG": "SP SHORT:", "Panah": "Arrow", "< 5 bit": "< 5 notes", "(Sekarang diatur otomatis sesuai perangkatmu.)": "(Now set automatically for your device.)", ", setiap bit yang berhasil ditekan = 1 SP (mode Santai tidak memberi SP). Tukar SP di Shop untuk animasi bit atau tampilan bar durasi baru.": ", every note you hit = 1 SP (Chill mode gives no SP). Spend SP in the Shop on new note animations or duration bar looks.", "Tema Kustom": "Custom Theme", "Buat tema sendiri: pilih warna latar, papan, judul, aksen, dan warna tiap lane, atur cahaya, lalu simpan sampai 8 tema.": "Make your own theme: pick colors for the background, board, title, accents, and every lane, tune the glow, and save up to 8 themes.", "🎨 BUKA STUDIO TEMA": "🎨 OPEN THEME STUDIO", "🎨 Studio Tema": "🎨 Theme Studio", "Atur warna dan tampilan game sesukamu. Perubahan langsung terlihat dan tersimpan otomatis.": "Set the colors and look of the game however you like. Changes show instantly and save automatically.", "Tema saya": "My theme", "Nama tema": "Theme name", "＋ TEMA BARU": "＋ NEW THEME", "Mulai dari preset": "Start from a preset", "Senja Jingga": "Orange Dusk", "Hutan Malam": "Night Forest", "Samudra": "Ocean", "Monokrom": "Monochrome", "Latar halaman": "Page background", "Latar atas": "Top background", "Latar bawah": "Bottom background", "Papan game": "Game board", "Papan atas": "Board top", "Papan bawah": "Board bottom", "Aksen & judul": "Accent & title", "Aksen tombol": "Button accent", "Garis & cahaya": "Lines & glow", "Judul 1": "Title 1", "Judul 2": "Title 2", "Judul 3": "Title 3", "Warna lane (bit & zona)": "Lane colors (notes & zones)", "Efek & cahaya": "Effects & glow", "Gumpalan cahaya": "Light blobs", "Bintang": "Stars", "Cahaya papan": "Board glow", "Kepekatan panel": "Panel opacity", "Tersimpan otomatis.": "Saved automatically.", "Gagal menyimpan (penyimpanan browser diblokir).": "Could not save (browser storage is blocked).", "HAPUS TEMA INI": "DELETE THIS THEME", "🎨 Tampilan": "🎨 Appearance", "Atur warna latar, papan, judul, dan lane sesukamu, lalu simpan jadi tema sendiri.": "Set the colors of the background, board, title, and lanes your way, then save it as your own theme.", "Terkunci. Beli “Tema Kustom” di Shop (Tema Game) seharga 10000 SP.": "Locked. Buy “Custom Theme” in the Shop (Game Themes) for 10000 SP.", "🛒 BUKA SHOP": "🛒 OPEN SHOP"});
 Object.assign(I18N_EN, {"Skor dicapai": "Score achieved", "Skor maksimal": "Max score", "Skor (dicapai / maksimal)": "Score (achieved / max)", "LEPAS! SKOR 5": "RELEASED! SCORE 5", "8. Bit panjang (ada garis di atasnya): tekan saat kepala bit sampai di bar hit, lalu tahan sampai garisnya habis. Bit biasa = 10 skor. Bit panjang = 5 skor saat ditekan + 5 skor lagi bila ditahan sampai selesai; kalau dilepas di tengah jalan, skornya tetap 5.": "8. Long notes (with a trail above them): press when the note head reaches the hit bar, then keep holding until the trail runs out. A normal note = 10 score. A long note = 5 score when pressed + 5 more if held to the end; if you let go midway, its score stays at 5."});
 Object.assign(I18N_EN, {
@@ -5359,18 +5198,21 @@ function hvChime() {
   } catch (e) {}
 }
 /* --- tombol Support Me --- */
-let shotData = '';
+let shotData = '', donateGo = false;
 const donateMsg = (t, c) => { $('donateStatus').textContent = t; $('donateStatus').style.color = c || ''; };
 function syncDonate() {
   const d = save.donor;
-  ['donateWarn', 'donateAsk', 'donatePick', 'donateStatus'].forEach(i => $(i).style.display = d ? 'none' : '');
+  ['donateWarn', 'donateAsk', 'donatePick', 'donateStatus', 'donateNoShot'].forEach(i => $(i).style.display = d ? 'none' : '');
   $('donateDone').style.display = (!d && shotData) ? '' : 'none';
   $('donatePrev').style.display = (!d && shotData) ? 'block' : 'none';
   $('donateThanks').style.display = d ? '' : 'none';
 }
 $('btnDonate').addEventListener('click', () => { syncDonate(); $('donateModal').classList.remove('hidden'); });
 $('btnDonateClose').addEventListener('click', () => $('donateModal').classList.add('hidden'));
-$('donateLink').addEventListener('click', () => hvToast('📸 Jangan lupa screenshot buktinya!'));
+$('donateLink').addEventListener('click', () => { donateGo = true; hvToast('💛 Setelah donate, kembali ke sini dan isi nama + nominal.'); });
+document.addEventListener('visibilitychange', () => {   // kembali dari Saweria: ingatkan lagi
+  if (!document.hidden && donateGo && !save.donor) { donateGo = false; syncDonate(); $('donateModal').classList.remove('hidden'); hvToast('💛 Sudah donate? Isi nama + nominal untuk klaim premium!'); }
+});
 $('donatePick').addEventListener('click', () => $('donateShot').click());
 function shrinkShot(f) {   // kecilkan gambar (maks 1280px, JPEG) supaya upload ringan
   return new Promise((ok, no) => {
@@ -5387,18 +5229,23 @@ $('donateShot').addEventListener('change', async e => {
   syncDonate();
 });
 const PROOF_MSG = { unreadable: 'Screenshot kurang jelas. Pastikan nama, nominal, dan waktu donasi terlihat.', nomatch: 'Donasimu belum ditemukan. Tunggu 1–2 menit setelah donate lalu coba lagi.', claimed: 'Donasi ini sudah pernah diklaim.' };
-async function sendProof() {   // dicek di server: dibaca AI lalu dicocokkan dengan donasi asli dari Saweria
-  if (!shotData || save.donor) return;
-  const b = $('donateDone'); b.disabled = true; donateMsg('Memeriksa screenshot…');
+async function postProof(payload, b) {   // dicek di server: dicocokkan dengan donasi asli dari Saweria
+  b.disabled = true; donateMsg('Memeriksa donasi…');
   try {
-    const r = await fetch('/.netlify/functions/verify-proof', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ image: shotData }) });
+    const r = await fetch('/api/verify-proof', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
     const j = await r.json().catch(() => ({}));
     if (r.ok && j.ok) { donateMsg(''); shotData = ''; $('donateModal').classList.add('hidden'); donateSurprise(); }
     else donateMsg(PROOF_MSG[j.reason] || 'Server sedang sibuk atau bermasalah. Coba lagi nanti.', '#ff6b6b');
   } catch (e) { donateMsg('Tidak bisa menghubungi server. Coba lagi nanti.', '#ff6b6b'); }
   b.disabled = false;
 }
-$('donateDone').addEventListener('click', sendProof);
+$('donateDone').addEventListener('click', () => { if (shotData && !save.donor) postProof({ image: shotData }, $('donateDone')); });
+$('donateManual').addEventListener('click', () => {
+  const name = $('donateName').value.trim(), amount = Number($('donateAmt').value);
+  if (save.donor) return;
+  if (!name || !(amount > 0)) { donateMsg('Isi nama dan nominal donasimu.', '#ff6b6b'); return; }
+  postProof({ name, amount }, $('donateManual'));
+});
 function donateSurprise() {   // kejutan tiba-tiba setelah donasi
   save.donor = true; donorSync(); persist();
   hvChime(); haptic([60, 40, 60, 40, 200]);
@@ -5552,6 +5399,21 @@ Object.assign(I18N_EN, {
   "✨ Efek Heavenly: Hemat (satu efek)": "✨ Heavenly Effects: Lite (single effect)",
   "Otomatis: efek penuh, lalu menyatu jadi satu efek hemat kalau game terasa lag.": "Auto: full effects, then merged into one lightweight effect if the game starts to lag.",
   "Game terasa berat, efek Heavenly dijadikan satu efek hemat.": "The game feels heavy, so Heavenly effects were merged into one lightweight effect."
+});
+Object.assign(I18N_EN, {
+  "⚠️ Jangan lupa screenshot bukti donasimu! Kalau lupa, kamu masih bisa klaim dengan nama dan nominal donasi.": "⚠️ Don't forget to screenshot your donation proof! If you forget, you can still claim with your donation name and amount.",
+  "Lupa screenshot? Klik di sini": "Forgot the screenshot? Click here",
+  "Isi nama persis seperti yang kamu tulis di kolom Dari saat donate, dan nominalnya.": "Enter the name exactly as you wrote it in the \"From\" field when donating, and the amount.",
+  "Nama di kolom Dari": "Name in the \"From\" field",
+  "Nominal (Rp)": "Amount (Rp)",
+  "KIRIM TANPA SCREENSHOT": "SEND WITHOUT SCREENSHOT",
+  "Isi nama dan nominal donasimu.": "Enter your donation name and amount.",
+  "Memeriksa donasi…": "Checking donation…",
+  "📸 Sudah donate? Upload screenshot buktinya!": "📸 Donated already? Upload your proof screenshot!",
+  "⚠️ Setelah donate, isi nama persis seperti di kolom Dari dan nominalnya di bawah ini. Kalau tidak cocok, premium tidak bisa diaktifkan.": "⚠️ After donating, enter the name exactly as in the \"From\" field and the amount below. If they don't match, premium can't be activated.",
+  "KLAIM PREMIUM": "CLAIM PREMIUM",
+  "💛 Setelah donate, kembali ke sini dan isi nama + nominal.": "💛 After donating, come back here and enter your name + amount.",
+  "💛 Sudah donate? Isi nama + nominal untuk klaim premium!": "💛 Donated already? Enter your name + amount to claim premium!"
 });
 let LANG = 'en'; try { LANG = localStorage.getItem('bt_lang2') === 'id' ? 'id' : 'en'; } catch (e) {}   // default Inggris; 'bt_lang2' = pilihan eksplisit pemain
 const i18nNorm = t => t.replace(/\s+/g, ' ').trim();
