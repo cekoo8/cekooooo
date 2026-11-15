@@ -4,10 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Beat Rhythm Game Auto-Detect</title>
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
 :root{--bg-img:none}
@@ -1714,6 +1710,145 @@ body[data-perf="2"] .hv-one{animation:none}
 @keyframes hvGy{to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(180deg) scale(.4);opacity:0}}
 @media(prefers-reduced-motion:reduce){.hv-bk,.hv-gl,.hv-curtain,.hv-flare,.hv-ringup,.hv-one{animation:none!important}}
 </style>
+<style id="uiPolish">
+/* ===== UI POLISH: Setting & About ===== */
+@keyframes uiPop{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes uiRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes uiShine{to{background-position:200% 0}}
+#settingsModal,#aboutModal{background:radial-gradient(circle at 50% 0,rgba(0,0,0,.55),rgba(0,0,0,.86));backdrop-filter:blur(6px)}
+#settingsModal:not(.hidden) .modal-content,#aboutModal:not(.hidden) .modal-content{animation:uiPop .32s cubic-bezier(.2,.9,.3,1.15)}
+#settingsModal .modal-content,#aboutModal .modal-content{max-width:480px;padding-left:18px;padding-right:18px;border-radius:22px;border:1px solid var(--s-line);box-shadow:0 24px 70px rgba(0,0,0,.65),0 0 40px -12px var(--ac);scrollbar-width:thin;scrollbar-color:var(--ab2) transparent}
+.ui-hero{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;padding:16px;margin:0 0 14px;border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.02));border:1px solid var(--s-line)}
+.ui-hero::before{content:"";position:absolute;width:170px;height:170px;right:-50px;top:-80px;border-radius:50%;background:radial-gradient(circle,var(--ac),transparent 68%);opacity:.3;pointer-events:none}
+.ui-ico{flex:none;display:grid;place-items:center;width:54px;height:54px;border-radius:16px;font-size:1.7rem;background:linear-gradient(135deg,var(--ab1),var(--ab2));box-shadow:0 8px 20px -6px var(--ab2),inset 0 1px 0 rgba(255,255,255,.4)}
+#settingsModal h2,#aboutModal h2{margin:0;font-size:1.5rem;font-weight:900;letter-spacing:.02em;background:linear-gradient(90deg,#fff,var(--ac));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ui-sub{margin:3px 0 0;font-size:.78rem;line-height:1.35;color:#b8b8d6}
+/* kartu section */
+.set-sec{position:relative;overflow:hidden;padding:16px 16px 16px 18px;margin-bottom:14px;border-radius:16px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));transition:border-color .2s,box-shadow .2s;animation:uiRise .45s both}
+.set-sec::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:linear-gradient(var(--ac),var(--ab2))}
+.set-sec:hover{border-color:rgba(255,255,255,.22);box-shadow:0 10px 26px -12px rgba(0,0,0,.7)}
+.set-sec:nth-of-type(2){animation-delay:.05s}.set-sec:nth-of-type(3){animation-delay:.1s}.set-sec:nth-of-type(4){animation-delay:.15s}.set-sec:nth-of-type(5){animation-delay:.2s}.set-sec:nth-of-type(6){animation-delay:.25s}.set-sec:nth-of-type(7){animation-delay:.3s}
+.set-sec>.about-h{font-size:1rem;font-weight:800;letter-spacing:.03em;color:#fff}
+.set-sec>.about-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--s-line),transparent)}
+/* pilihan segmen */
+.gfx-seg,.fps-seg{padding:5px;border-radius:14px;background:rgba(0,0,0,.38);border:1px solid var(--s-line)}
+.gfx-opt,.fps-opt{position:relative;color:#cfd0ea;border-radius:10px;transition:transform .15s,background .2s,box-shadow .2s}
+.gfx-opt:active,.fps-opt:active{transform:scale(.96)}
+.gfx-opt.on,.fps-opt.on{color:#fff;box-shadow:0 8px 20px -6px var(--ab2),inset 0 1px 0 rgba(255,255,255,.4)}
+.gfx-opt.on::after{content:"✓";position:absolute;top:5px;right:9px;font-size:.72rem}
+/* saklar */
+.set-chk{margin-top:12px;padding-top:12px;border-top:1px dashed var(--s-line)}
+.set-chk>span{font-weight:700;color:#fff}
+.set-chk input{width:46px;height:26px;box-shadow:inset 0 2px 5px rgba(0,0,0,.45)}
+.set-chk input::after{width:20px;height:20px;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+.set-chk input:checked{background:linear-gradient(135deg,var(--ab1),var(--ab2));box-shadow:0 0 14px -2px var(--ab1)}
+.set-chk input:checked::after{transform:translateX(20px)}
+/* tombol & input */
+.set-sec .set-reset,#aboutModal .menu-btn:not(.close-top){border-radius:12px;font-weight:800;letter-spacing:.04em;transition:transform .15s,box-shadow .2s,filter .2s}
+.set-sec .set-reset:hover,#aboutModal .menu-btn:not(.close-top):hover{transform:translateY(-2px)}
+.set-sec .set-reset:active,#aboutModal .menu-btn:not(.close-top):active{transform:scale(.98)}
+.set-sec .set-reset.primary,#aboutModal .menu-btn.primary:not(.close-top){background:linear-gradient(110deg,var(--ab1),var(--ab2),var(--ab1));background-size:200% 100%;box-shadow:0 10px 22px -10px var(--ab2)}
+.set-sec .set-reset.primary:hover,#aboutModal .menu-btn.primary:not(.close-top):hover{animation:uiShine 1.4s linear infinite}
+.erase-input{border-radius:12px;border:1px solid var(--s-line);background:rgba(0,0,0,.38);transition:border-color .2s,box-shadow .2s}
+.erase-input:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 3px rgba(0,229,255,.2)}
+/* ===== About Me ===== */
+#aboutModal .modal-content>*:not(.close-top){animation:uiRise .45s both}
+#aboutModal .about-hello{display:inline-block;margin:4px 0 0;padding:3px 11px;border-radius:99px;font-size:.8rem;background:rgba(46,213,115,.14);border:1px solid rgba(46,213,115,.45)}
+#aboutModal .about-h{display:flex;align-items:center;gap:8px;margin:22px 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
+#aboutModal .about-h::before{content:"";width:4px;height:14px;border-radius:2px;background:linear-gradient(var(--ac),var(--ab2))}
+#aboutModal .about-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--s-line),transparent)}
+#aboutModal .r-label{display:block;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a9aacb}
+#aboutModal .rank-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#aboutModal .rank-pair>div{min-width:0;padding:10px 6px;text-align:center;border-radius:14px;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid var(--s-line)}
+#aboutModal .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#aboutModal .result-grid>div{position:relative;overflow:hidden;padding:12px 12px 12px 14px;text-align:left;border-radius:14px;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid var(--s-line);transition:transform .2s,border-color .2s}
+#aboutModal .result-grid>div:hover{transform:translateY(-2px);border-color:var(--ac)}
+#aboutModal .result-grid>div.wide{grid-column:1/-1}
+#aboutModal .result-grid>div::after{position:absolute;right:10px;top:8px;font-size:1.6rem;opacity:.22}
+#aboutModal .result-grid>div:nth-child(1)::after{content:"🔥"}#aboutModal .result-grid>div:nth-child(2)::after{content:"🥁"}#aboutModal .result-grid>div:nth-child(3)::after{content:"⭐"}#aboutModal .result-grid>div:nth-child(4)::after{content:"🎵"}#aboutModal .result-grid>div:nth-child(5)::after{content:"💎"}
+#aboutModal .result-grid strong{display:block;margin-top:4px;font-size:1.4rem;font-weight:900;background:linear-gradient(90deg,#fff,var(--ac));-webkit-background-clip:text;background-clip:text;color:transparent}
+#aboutModal .song-info.plain{padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.28);border:1px dashed var(--s-line);font-size:.85rem}
+@media(prefers-reduced-motion:reduce){.set-sec,#aboutModal .modal-content>*,#settingsModal .modal-content,#aboutModal .modal-content{animation:none!important}}
+</style>
+<style id="pfCss">
+/* ===== Profil & Frame ===== */
+@keyframes pfPulse{0%,100%{transform:scale(.9);opacity:.18}50%{transform:scale(1.1);opacity:.5}}
+@keyframes pfTw{0%,100%{opacity:.2;transform:scale(.55) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(25deg)}}
+@keyframes pfFloat{0%,100%{transform:translate(-50%,-52%)}50%{transform:translate(-50%,-72%)}}
+@keyframes pfBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14%)}}
+@keyframes pfSweep{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.pf{position:relative;display:inline-block;flex:none;width:var(--sz);height:var(--sz);border-radius:50%;vertical-align:middle}
+.pf::before{content:"";position:absolute;inset:-32%;border-radius:50%;background:radial-gradient(circle,var(--c1),transparent 62%);opacity:0;pointer-events:none}
+.pf.aura::before{opacity:.38;animation:pfPulse 2.6s ease-in-out infinite}
+.pf-ring{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-shadow:0 0 calc(var(--g)*2.2px) var(--c1)}
+.pf-ring::before{content:"";position:absolute;inset:-60%;background:conic-gradient(var(--c1),var(--c2),var(--c1),var(--c2),var(--c1));animation:rkSpin var(--spd) linear infinite}
+.pf.admin .pf-ring::before{background:conic-gradient(#ff3b3b,#ffd23b,#3bff6a,#3bd1ff,#a23bff,#ff3b3b)}
+.pf.vip .pf-ring::before{background:conic-gradient(#ffd76a,#ff7ad9,#fff3c4,#ffb347,#ff7ad9,#ffd76a)}
+.pf-img{position:absolute;inset:max(3px,calc(var(--sz)*.09));border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#12121c center/cover no-repeat;box-shadow:0 0 0 max(1.5px,calc(var(--sz)*.03)) #0a0a12,inset 0 0 10px rgba(0,0,0,.5);font-size:calc(var(--sz)*.46)}
+.pf-img::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.5) 50%,transparent 60%);transform:translateX(-120%);opacity:0}
+.pf.shine .pf-img::after{opacity:1;animation:pfSweep 3.2s ease-in-out infinite}
+.pf.nofr .pf-ring{display:none}.pf.nofr .pf-img{inset:0;box-shadow:none}
+.pf-ray{position:absolute;inset:-22%;border-radius:50%;background:repeating-conic-gradient(var(--c1) 0 5deg,transparent 5deg 15deg);-webkit-mask:radial-gradient(circle closest-side,transparent 68%,#000 72%,#000 82%,transparent 100%);mask:radial-gradient(circle closest-side,transparent 68%,#000 72%,#000 82%,transparent 100%);opacity:.75;animation:rkSpin calc(var(--spd)*3) linear infinite;pointer-events:none}
+.pf.admin .pf-ray{background:repeating-conic-gradient(#ff3b3b 0 5deg,#ffd23b 5deg 10deg,#3bff6a 10deg 15deg,#3bd1ff 15deg 20deg,#a23bff 20deg 25deg)}
+.pf.vip .pf-ray{background:repeating-conic-gradient(#ffd76a 0 5deg,transparent 5deg 10deg,#ff7ad9 10deg 15deg,transparent 15deg 20deg)}
+.pf-dash{position:absolute;inset:-10%;border-radius:50%;border:max(1.5px,calc(var(--sz)*.028)) dashed var(--c1);opacity:.85;animation:rkSpin calc(var(--spd)*1.6) linear infinite reverse;pointer-events:none}
+.pf-orb{position:absolute;inset:-12%;border-radius:50%;animation:rkSpin calc(var(--spd)*.8) linear infinite;pointer-events:none}
+.pf-orb::before{content:"";position:absolute;left:50%;top:0;width:calc(var(--sz)*.12);height:calc(var(--sz)*.12);margin:calc(var(--sz)*-.06) 0 0 calc(var(--sz)*-.06);border-radius:50%;background:var(--c2);box-shadow:0 0 6px 2px var(--c1),0 0 0 1px rgba(255,255,255,.55)}
+.pf.admin .pf-orb::before{background:#fff;box-shadow:0 0 6px 2px #ff3b3b,0 0 12px 3px #3bd1ff}
+.pf-spk{position:absolute;color:#fff;font-size:calc(var(--sz)*.22);line-height:1;text-shadow:0 0 6px var(--c1),0 0 12px var(--c2);animation:pfTw 1.6s ease-in-out infinite;pointer-events:none}
+.pf-top{position:absolute;left:50%;top:0;z-index:3;font-size:calc(var(--sz)*.3);line-height:1;filter:drop-shadow(0 2px 3px #000);transform:translate(-50%,-52%);animation:pfFloat 2.2s ease-in-out infinite;pointer-events:none}
+.pf-halo{position:absolute;left:24%;right:24%;top:-17%;height:18%;border-radius:50%;border:max(1.5px,calc(var(--sz)*.035)) solid #fff3c4;box-shadow:0 0 8px #ffd36b,inset 0 0 6px #ffd36b;z-index:3;animation:pfBob 2.6s ease-in-out infinite;pointer-events:none}
+.pf.lite *,.pf.lite *::before,.pf.lite *::after,.pf.lite::before,body[data-perf="2"] .pf *,body[data-perf="2"] .pf *::before,body[data-perf="2"] .pf *::after,body[data-perf="2"] .pf::before,body.perf3 .pf *,body.perf3 .pf *::before,body.perf3 .pf *::after,body.perf3 .pf::before{animation-play-state:paused!important}
+.pf-chip{padding-top:14px}.pf-hero{margin:8px}
+.pf-hero{position:relative;flex:none;padding:0;border:0;background:none;cursor:pointer;transition:transform .15s}
+.pf-hero:hover{transform:scale(1.06)}
+.pf-hero::after{content:"✎";position:absolute;right:-3px;bottom:-3px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;font-size:.72rem;color:#fff;background:linear-gradient(135deg,var(--ab1),var(--ab2));box-shadow:0 2px 8px rgba(0,0,0,.6)}
+.vip-tag{display:inline-block;margin:4px 0 0 6px;padding:3px 10px;border-radius:99px;font-size:.7rem;font-weight:900;letter-spacing:.1em;color:#3a2600;background:linear-gradient(110deg,#ffe27a,#ffb347,#ffe27a);background-size:200% 100%;animation:uiShine 2.4s linear infinite}
+.vip-tag[hidden]{display:none}
+.pf-row{display:flex;align-items:center;gap:14px;margin:6px 0}
+.pf-acts{display:flex;flex-direction:column;gap:8px;flex:1}.pf-acts .menu-btn{padding:10px;font-size:.8rem}
+.pf-frames{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 12px}
+.pf-chip{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;padding:8px 2px;border-radius:12px;background:#0e0e1a;border:1px solid var(--s-line);color:#fff;font-size:.64rem;font-weight:700;cursor:pointer;transition:transform .15s,border-color .2s}
+.pf-chip:not(:disabled):hover{transform:translateY(-2px)}
+.pf-chip.on{border-color:var(--ac);background:rgba(255,255,255,.08);box-shadow:0 0 12px -3px var(--ac)}
+.pf-chip.lock{opacity:.45;cursor:not-allowed}
+.pf-chip small{font-size:.56rem;font-weight:500;color:#a9aacb}
+
+/* ===== Frame sangar: Godly / Admin / VIP ===== */
+@keyframes pfHue{to{filter:hue-rotate(360deg)}}
+@keyframes pfFlapR{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-12deg)}}
+@keyframes pfFlapL{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(12deg)}}
+@keyframes pfFlick{0%{opacity:1}30%{opacity:.12}45%{opacity:1}70%{opacity:.4}85%{opacity:1}}
+@keyframes pfGlitch{0%,92%,100%{transform:none}93%{transform:translate(-3%,1%)}95%{transform:translate(3%,-1%) skewX(5deg)}97%{transform:translate(-1%,0)}}
+@keyframes pfRise{0%{transform:translateY(0) scale(1);opacity:0}15%{opacity:1}100%{transform:translateY(calc(var(--sz)*-.95)) scale(.3);opacity:0}}
+@keyframes pfFloat2{0%,100%{transform:translate(-50%,-72%)}50%{transform:translate(-50%,-88%)}}
+.pf.god .pf-ray,.pf.admin .pf-ray,.pf.vip .pf-ray{opacity:1}
+.pf.god::before{background:radial-gradient(circle,#fff3c4,#ffd36b 35%,transparent 66%);opacity:.6}
+.pf-wing{position:absolute;top:-14%;width:66%;height:66%;filter:drop-shadow(0 0 6px #ffd36b);pointer-events:none}
+.pf-wing.r{left:76%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23fffbe0'/%3E%3Cstop offset='1' stop-color='%23ffb100'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M2 40 C10 18 30 6 62 4 C52 12 48 16 46 20 C54 18 58 18 62 18 C50 26 44 30 40 34 C48 34 52 34 56 35 C44 42 36 46 30 48 C36 50 40 51 44 52 C30 58 14 56 2 40Z' fill='url(%23g)' stroke='%23fff' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% 100% no-repeat;transform-origin:0 75%;animation:pfFlapR 2.4s ease-in-out infinite}
+.pf-wing.l{right:76%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23fffbe0'/%3E%3Cstop offset='1' stop-color='%23ffb100'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg transform='translate(64 0) scale(-1 1)'%3E%3Cpath d='M2 40 C10 18 30 6 62 4 C52 12 48 16 46 20 C54 18 58 18 62 18 C50 26 44 30 40 34 C48 34 52 34 56 35 C44 42 36 46 30 48 C36 50 40 51 44 52 C30 58 14 56 2 40Z' fill='url(%23g)' stroke='%23fff' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E") center/100% 100% no-repeat;transform-origin:100% 75%;animation:pfFlapL 2.4s ease-in-out infinite}
+.pf-beam{position:absolute;left:46%;right:46%;top:-38%;bottom:-38%;background:linear-gradient(transparent,#fff7cf 50%,transparent);box-shadow:0 0 10px 3px rgba(255,226,122,.5);animation:rkSpin 8s linear infinite;pointer-events:none}
+.pf-mote{position:absolute;bottom:8%;width:calc(var(--sz)*.07);height:calc(var(--sz)*.07);border-radius:50%;background:#fff6c8;box-shadow:0 0 6px 2px var(--c1);animation:pfRise 2.6s ease-in infinite;pointer-events:none}
+.pf.vip .pf-mote{background:#ffe9a8;box-shadow:0 0 6px 2px #ff7ad9}
+.pf.admin::before{background:radial-gradient(circle,#ff3b3b,#a23bff 45%,transparent 66%);opacity:.6;animation:pfPulse 1.6s ease-in-out infinite,pfHue 4s linear infinite}
+.pf.admin .pf-ring{animation:pfHue 4s linear infinite}
+.pf.admin .pf-img{animation:pfGlitch 3s steps(1) infinite}
+.pf-spike{position:absolute;inset:-17%;background:conic-gradient(#ff3b3b,#ffd23b,#3bff6a,#3bd1ff,#a23bff,#ff3b3b);clip-path:polygon(100.0% 50.0%,90.2% 58.0%,96.2% 69.1%,84.1% 72.8%,85.4% 85.4%,72.8% 84.1%,69.1% 96.2%,58.0% 90.2%,50.0% 100.0%,42.0% 90.2%,30.9% 96.2%,27.2% 84.1%,14.6% 85.4%,15.9% 72.8%,3.8% 69.1%,9.8% 58.0%,0.0% 50.0%,9.8% 42.0%,3.8% 30.9%,15.9% 27.2%,14.6% 14.6%,27.2% 15.9%,30.9% 3.8%,42.0% 9.8%,50.0% 0.0%,58.0% 9.8%,69.1% 3.8%,72.8% 15.9%,85.4% 14.6%,84.1% 27.2%,96.2% 30.9%,90.2% 42.0%);-webkit-mask:radial-gradient(circle closest-side,transparent 73%,#000 74%);mask:radial-gradient(circle closest-side,transparent 73%,#000 74%);animation:rkSpin calc(var(--spd)*2.5) linear infinite;pointer-events:none}
+.pf-bolt{position:absolute;left:50%;top:50%;width:calc(var(--sz)*.2);height:calc(var(--sz)*.38);margin:calc(var(--sz)*-.19) 0 0 calc(var(--sz)*-.1);transform:rotate(var(--a)) translateY(calc(var(--sz)*-.68));background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 56'%3E%3Cpath d='M24 0 L6 28 H17 L8 56 L30 22 H19 L28 0Z' fill='%23fff7a8' stroke='%233bd1ff' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 0 4px #3bd1ff);animation:pfFlick .9s steps(1) infinite;pointer-events:none}
+.pf-laurel{position:absolute;inset:-9%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23fffbe0'/%3E%3Cstop offset='1' stop-color='%23ffb100'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='66.5' cy='90.8' rx='6.5' ry='2.8' transform='rotate(-40 66.5 90.8)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='75.9' cy='85.6' rx='6.5' ry='2.8' transform='rotate(-54 75.9 85.6)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='83.7' cy='78.3' rx='6.5' ry='2.8' transform='rotate(-68 83.7 78.3)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='89.5' cy='69.3' rx='6.5' ry='2.8' transform='rotate(-82 89.5 69.3)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='93.0' cy='59.1' rx='6.5' ry='2.8' transform='rotate(-96 93.0 59.1)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='94.0' cy='48.5' rx='6.5' ry='2.8' transform='rotate(-110 94.0 48.5)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='92.3' cy='37.9' rx='6.5' ry='2.8' transform='rotate(-124 92.3 37.9)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='88.1' cy='28.0' rx='6.5' ry='2.8' transform='rotate(-138 88.1 28.0)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='33.5' cy='90.8' rx='6.5' ry='2.8' transform='rotate(-140 33.5 90.8)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='24.1' cy='85.6' rx='6.5' ry='2.8' transform='rotate(-126 24.1 85.6)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='16.3' cy='78.3' rx='6.5' ry='2.8' transform='rotate(-112 16.3 78.3)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='10.5' cy='69.3' rx='6.5' ry='2.8' transform='rotate(-98 10.5 69.3)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='7.0' cy='59.1' rx='6.5' ry='2.8' transform='rotate(-84 7.0 59.1)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='6.0' cy='48.5' rx='6.5' ry='2.8' transform='rotate(-70 6.0 48.5)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='7.7' cy='37.9' rx='6.5' ry='2.8' transform='rotate(-56 7.7 37.9)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3Cellipse cx='11.9' cy='28.0' rx='6.5' ry='2.8' transform='rotate(-42 11.9 28.0)' fill='url(%23g)' stroke='%23fff3c4' stroke-width='.5'/%3E%3C/svg%3E") center/100% 100% no-repeat;filter:drop-shadow(0 0 4px #ffd76a);pointer-events:none}
+.pf-crownx{position:absolute;left:50%;top:0;z-index:3;width:calc(var(--sz)*.58);height:calc(var(--sz)*.42);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 72'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23fffbe0'/%3E%3Cstop offset='1' stop-color='%23ffb100'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M8 58 L4 18 L28 36 L50 8 L72 36 L96 18 L92 58Z' fill='url(%23g)' stroke='%23fff3c4' stroke-width='3' stroke-linejoin='round'/%3E%3Crect x='8' y='58' width='84' height='10' rx='3' fill='url(%23g)' stroke='%23fff3c4' stroke-width='2'/%3E%3Ccircle cx='50' cy='38' r='7' fill='%23ff2d55'/%3E%3Ccircle cx='27' cy='48' r='4.5' fill='%233bd1ff'/%3E%3Ccircle cx='73' cy='48' r='4.5' fill='%233bd1ff'/%3E%3Ccircle cx='4' cy='16' r='4' fill='%23fff'/%3E%3Ccircle cx='50' cy='6' r='4.5' fill='%23fff'/%3E%3Ccircle cx='96' cy='16' r='4' fill='%23fff'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 0 7px #ffd76a);transform:translate(-50%,-72%);animation:pfFloat2 2.2s ease-in-out infinite;pointer-events:none}
+.pf.vip .pf-orb::before{border-radius:2px;transform:rotate(45deg);background:#fff3c4;box-shadow:0 0 6px 2px #ffd76a,0 0 10px 3px #ff7ad9}
+</style>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<style id="fsCss">
+.corner.tl{flex-direction:column;align-items:flex-start}
+.fs-btn{width:40px;height:40px;padding:0;display:grid;place-items:center;color:#fff;background:rgba(42,42,64,.88);border:1px solid rgba(255,255,255,.18);border-radius:50%;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.4);transition:transform .15s,background .2s,box-shadow .2s}
+.fs-btn:hover{background:#3b3b5c;transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,229,255,.3)}
+.fs-btn:active{transform:scale(.92)}
+.fs-btn.on{background:linear-gradient(135deg,var(--ab1,#00c6ff),var(--ab2,#0072ff));border-color:#9fe9ff}
+.fs-btn .fs-out{display:none}.fs-btn.on .fs-in{display:none}.fs-btn.on .fs-out{display:inline}
+</style>
 </head>
 <body>
 
@@ -1722,7 +1857,8 @@ body[data-perf="2"] .hv-one{animation:none}
 
 <!-- Menu utama -->
 <div id="mainMenu" class="menu-overlay">
-  <div class="corner tl"><button id="btnShop" class="corner-btn"><i>🛒</i><span>SHOP</span><small class="sp-chip">0 SP</small></button></div>
+  <div class="corner tl"><button id="btnShop" class="corner-btn"><i>🛒</i><span>SHOP</span><small class="sp-chip">0 SP</small></button>
+    <button id="btnFs" class="fs-btn" type="button" aria-label="Layar penuh" title="Layar penuh"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="fs-in" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/><path class="fs-out" d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button></div>
   <div class="corner tr">
     <button id="btnAbout" class="corner-btn"><i>👤</i><span>ABOUT ME</span></button>
     <button id="btnBg" class="corner-btn"><i>🖼</i><span>WALLPAPER</span></button>
@@ -1812,8 +1948,7 @@ body[data-perf="2"] .hv-one{animation:none}
 <div id="aboutModal" class="modal hidden">
   <div class="modal-content shop-card">
     <button id="btnAboutClose" class="menu-btn close-top" aria-label="Tutup">✕ TUTUP</button>
-    <h2>About Me</h2>
-    <p id="aboutHello" class="about-hello">Halo, User!</p>
+    <div class="ui-hero"><button id="pfHero" class="pf-hero" type="button" aria-label="Ubah foto dan frame profil"></button><div><h2>About Me</h2><p id="aboutHello" class="about-hello">Halo, User!</p><span id="vipTag" class="vip-tag" hidden>★ VIP</span></div></div>
     <p class="bg-status" style="text-align:left;margin:0">Nama kamu (muncul di ucapan selamat):</p>
     <div class="about-name">
       <input id="nameInput" class="erase-input" type="text" maxlength="20" autocomplete="off" placeholder="User" />
@@ -1891,7 +2026,7 @@ body[data-perf="2"] .hv-one{animation:none}
 <div id="settingsModal" class="modal hidden">
   <div class="modal-content shop-card">
     <button id="btnSettingsClose" class="menu-btn close-top" aria-label="Tutup">✕ TUTUP</button>
-    <h2>⚙ Setting</h2>
+    <div class="ui-hero"><div class="ui-ico">⚙</div><div><h2>Setting</h2><p class="ui-sub">Atur tombol, tampilan, dan performa sesuai gayamu</p></div></div>
     <section class="set-sec"><h3 class="about-h">🎮 Tombol</h3>
     <p class="set-hint">Ketuk tombol di kanan, lalu tekan tombol keyboard yang kamu mau (Esc = batal). Kalau tombolnya sudah dipakai lane lain, keduanya otomatis ditukar. P = Pause dan R = Stop tidak bisa dipakai. Controller tetap L2, L1, R1, R2.</p>
     <div id="kbList" class="kb-list"></div>
@@ -1935,8 +2070,15 @@ body[data-perf="2"] .hv-one{animation:none}
     </div>
     <p id="gfxDesc" class="set-hint" style="margin-top:10px"></p>
     <button id="btnGfxAuto" class="gfx-auto" type="button" hidden>↺ Atur otomatis sesuai perangkat</button>
+    <button id="btnGfxRefresh" class="menu-btn set-reset" type="button">🔄 REFRESH GRAFIK</button>
+    <p id="gfxRefreshMsg" class="set-hint" style="min-height:1.2em;margin-top:8px">Kalau grafik nyangkut di level rendah (L2/L3) padahal HP kamu kuat, tekan ini: ingatan level lama dihapus dan deteksi diulang dari nol.</p>
     <button id="btnHvFx" class="menu-btn set-reset" type="button" style="display:none">✨ Efek Heavenly: Otomatis</button>
     <p id="hvHint" class="set-hint" style="display:none">Otomatis: efek penuh, lalu menyatu jadi satu efek hemat kalau game terasa lag.</p>
+    </section>
+    <section class="set-sec"><h3 class="about-h">📲 Main Offline</h3>
+      <p class="set-hint">Download game ini sebagai satu file (.html) ke perangkatmu. Setelah itu buka file-nya lewat aplikasi File/Downloads di HP, dan game bisa dimainkan tanpa internet.</p>
+      <button id="btnGameDown" class="menu-btn primary set-reset" type="button">⬇ DOWNLOAD GAME (OFFLINE)</button>
+      <p id="offMsg" class="set-hint" style="min-height:1.2em;margin-top:8px"></p>
     </section>
     <section class="set-sec"><h3 class="about-h">💾 Akun</h3>
       <p class="set-hint">Download akunmu (SP, item, rank, tema kustom, dan nama) sebagai file di perangkatmu. Kalau akun terhapus, pulihkan lagi dari file itu kapan saja. Wallpaper dan pengaturan tombol tidak ikut.</p>
@@ -1967,6 +2109,13 @@ body[data-perf="2"] .hv-one{animation:none}
     <h2>🎨 Studio Tema</h2>
     <p class="set-hint">Atur warna dan tampilan game sesukamu. Perubahan langsung terlihat dan tersimpan otomatis.</p>
     <div class="ct-pv"><div id="ctBg" class="thx" data-th="custom" style="--u:.4"></div><div class="ct-bd"><b class="ct-t">RHYTHM BEAT</b><div class="ct-ln"><i></i><i></i><i></i><i></i></div></div></div>
+    <h3 class="ct-h">🖼 Profil &amp; Frame</h3>
+    <p class="set-hint">Upload foto profil dan pilih frame. Frame rank terbuka otomatis saat kamu mencapai rank itu, dan frame VIP khusus pengguna VIP.</p>
+    <div class="pf-row"><div id="pfPrev"></div><div class="pf-acts"><button id="pfUp" class="menu-btn primary" type="button">📷 UPLOAD FOTO</button><button id="pfDel" class="menu-btn" type="button">🗑 HAPUS FOTO</button><input id="pfFile" type="file" accept="image/*" hidden /></div></div>
+    <p id="pfMsg" class="set-hint" style="min-height:1.2em"></p>
+    <div id="pfFrames" class="pf-frames"></div>
+    <div class="ct-grid"><label class="ct-c"><span>Frame kustom 1</span><input id="pfA" type="color" /></label><label class="ct-c"><span>Frame kustom 2</span><input id="pfB" type="color" /></label></div>
+    <label class="ct-rg"><span>Kecepatan putar</span><input id="pfS" type="range" min="1" max="10" step="1" /></label>
     <h3 class="ct-h">Tema saya</h3>
     <div id="ctChips" class="ct-chips"></div>
     <div class="ct-row"><input id="ctName" class="erase-input" type="text" maxlength="20" autocomplete="off" placeholder="Nama tema" /><button id="btnCtNew" class="menu-btn" type="button">＋ TEMA BARU</button></div>
@@ -3491,7 +3640,7 @@ function cuVars() {   // semua warna lewat variabel CSS di <html>: tema lain dip
 const DEFAULT_ID = { owned: 'default', equipped: 'default', barOwned: 'neon', barEquipped: 'neon', hpOwned: 'default', hpEquipped: 'default',
   hitOwned: 'default', hitEquipped: 'default', zoneOwned: 'default', zoneEquipped: 'default', borderOwned: 'none', borderEquipped: 'none', themeOwned: 'default', themeEquipped: 'default' };
 const freshSave = () => {
-  const o = { sp: 0, ts: 0, name: '', songs: 0, bits: 0, bestCombo: 0, spEarned: 0, last: null, rank: -1, bestRank: -1, fullStreak: 0, secret: false, lastChange: null, redeemed: [], customThemes: [], customId: '', donor: false, crown: false, king: false, crownTs: 0 };
+  const o = { sp: 0, ts: 0, name: '', songs: 0, bits: 0, bestCombo: 0, spEarned: 0, last: null, rank: -1, bestRank: -1, fullStreak: 0, secret: false, lastChange: null, redeemed: [], customThemes: [], customId: '', avatar: '', frame: 'auto', pfc: { a: '#00f2fe', b: '#a23bff', s: 4 }, donor: false, crown: false, king: false, crownTs: 0 };
   Object.entries(DEFAULT_ID).forEach(([k, v]) => o[k] = /owned$/i.test(k) ? [v] : v);
   return o;
 };
@@ -3513,7 +3662,7 @@ function normSave(d) {
     rank: Number.isInteger(d.rank) ? d.rank : -1, bestRank: Number.isInteger(d.bestRank) ? d.bestRank : -1,
     fullStreak: Math.max(0, +d.fullStreak || 0), secret: !!d.secret,
     redeemed: Array.isArray(d.redeemed) ? d.redeemed.filter(x => typeof x === 'string') : [],
-    customThemes: Array.isArray(d.customThemes) ? d.customThemes.slice(0, CU_MAX).map(t => cuClean(t)) : [], customId: typeof d.customId === 'string' ? d.customId : '', donor: !!d.donor, crown: !!d.crown, king: !!d.king, crownTs: Math.max(0, +d.crownTs || 0) };
+    customThemes: Array.isArray(d.customThemes) ? d.customThemes.slice(0, CU_MAX).map(t => cuClean(t)) : [], customId: typeof d.customId === 'string' ? d.customId : '', avatar: typeof d.avatar === 'string' && /^data:image\/(jpeg|png|webp);base64,/.test(d.avatar) && d.avatar.length < 60000 ? d.avatar : '', frame: typeof d.frame === 'string' ? d.frame.slice(0, 12) : 'auto', pfc: d.pfc && typeof d.pfc === 'object' ? { a: /^#[0-9a-f]{6}$/i.test(d.pfc.a) ? d.pfc.a : '#00f2fe', b: /^#[0-9a-f]{6}$/i.test(d.pfc.b) ? d.pfc.b : '#a23bff', s: Math.min(10, Math.max(1, +d.pfc.s || 4)) } : { a: '#00f2fe', b: '#a23bff', s: 4 }, donor: !!d.donor, crown: !!d.crown, king: !!d.king, crownTs: Math.max(0, +d.crownTs || 0) };
   ['songs', 'bits', 'bestCombo', 'spEarned'].forEach(k => r[k] = Math.max(0, +d[k] || 0));
   Object.keys(DEFAULT_ID).forEach(k => r[k] = /owned$/i.test(k) ? (Array.isArray(d[k]) ? d[k].filter(x => typeof x === 'string') : []) : (typeof d[k] === 'string' ? d[k] : DEFAULT_ID[k]));
   return r;
@@ -3522,7 +3671,7 @@ function mergeSaves(list) {
   const c = list.map(normSave).filter(Boolean).sort((x, y) => y.ts - x.ts);
   if (!c.length) return;
   const b = c[0];
-  ['ts', 'sp', 'name', 'last', 'lastChange', 'rank', 'fullStreak', 'customThemes', 'customId'].forEach(k => save[k] = b[k]);
+  ['ts', 'sp', 'name', 'last', 'lastChange', 'rank', 'fullStreak', 'customThemes', 'customId', 'avatar', 'frame', 'pfc'].forEach(k => save[k] = b[k]);
   ['songs', 'bits', 'bestCombo', 'spEarned', 'bestRank'].forEach(k => save[k] = Math.max(...c.map(x => x[k])));
   save.secret = c.some(x => x.secret);
   save.donor = c.some(x => x.donor); save.crown = c.some(x => x.crown); save.king = c.some(x => x.king); save.crownTs = Math.max(...c.map(x => x.crownTs));
@@ -5043,7 +5192,7 @@ function renderGfx() {
 function setGfx(mode) {   // 'low' | 'normal' | null (kembali otomatis)
   try { if (mode) localStorage.setItem('bt_gfx', mode); else localStorage.removeItem('bt_gfx'); } catch (e) {}
   gfxLock = !!mode; pfBad = pfSev = pfSettle = 0;
-  try { localStorage.removeItem('bt_guard'); } catch (e) {}
+  try { localStorage.removeItem('bt_guard'); if (!mode) localStorage.removeItem('bt_perf'); } catch (e) {}
   setPerf(mode ? (mode === 'low' ? 1 : 0) : autoPerfBase());
   renderGfx();
 }
@@ -5054,6 +5203,31 @@ $('btnSettingsClose').addEventListener('click', closeSettings);
 $('gfxLow').addEventListener('click', () => setGfx('low'));
 $('gfxNormal').addEventListener('click', () => setGfx('normal'));
 $('btnGfxAuto').addEventListener('click', () => setGfx(null));
+function refreshGfx() {   // hapus ingatan level (bt_perf & bt_guard), ukur ulang refresh layar, mulai lagi dari level dasar
+  try { localStorage.removeItem('bt_perf'); localStorage.removeItem('bt_guard'); } catch (e) {}
+  hzBest = 0; pfBad = pfSev = pfSettle = 0; pfWarm = performance.now() + 1500;
+  const g = gfxSaved();
+  setPerf(g ? (g === 'low' ? 1 : 0) : autoPerfBase());
+  hzProbe(); renderGfx(); renderFps();
+  const m = `Grafik di-refresh: kembali ke L${perfLevel}. Deteksi FPS diulang dari nol saat kamu main lagi.`;
+  $('gfxRefreshMsg').textContent = m; fpsToast('🔄 ' + m);
+}
+$('btnGfxRefresh').addEventListener('click', refreshGfx);
+async function downloadGame() {   // simpan game ini sebagai file .html mandiri (tidak butuh internet saat dibuka)
+  const msg = $('offMsg');
+  if (location.protocol === 'file:') { msg.textContent = 'Game ini sudah berjalan dari file di perangkatmu, jadi sudah bisa dimainkan tanpa internet.'; return; }
+  msg.textContent = 'Mengunduh game...';
+  try {
+    const r = await fetch(location.href.split('#')[0], { cache: 'no-store' });
+    if (!r.ok) throw new Error('http ' + r.status);
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([await r.text()], { type: 'text/html' }));
+    a.download = 'Beat-Rhythm-Game.html';
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    msg.textContent = 'Game didownload (Beat-Rhythm-Game.html). Buka lewat aplikasi File/Downloads untuk main tanpa internet.';
+  } catch (e) { msg.textContent = 'Gagal mengunduh. Pastikan HP sedang online lalu coba lagi.'; }
+}
+$('btnGameDown').addEventListener('click', downloadGame);
 applyKb();
 
 renderAbout();
@@ -5489,5 +5663,119 @@ $('langEn').addEventListener('click', () => setLang('en'));
 setLang(LANG);
 </script>
 <div id="loadOv" class="load-ov" hidden><div class="ld-ring"></div><div class="ld-bar"><div id="loadFill" class="ld-fill"></div></div><div id="loadTxt" class="ld-txt">Memuat…</div></div>
+<script id="pfExt">
+(function () {
+  const RB = ['auto', 'none', 'custom', 'vip'];
+  function pfCfg(id) {
+    if (id === 'none') return { c1: 'transparent', c2: 'transparent', spd: 1, g: 0, t: -1, cls: 'nofr' };
+    if (id === 'vip') return { c1: '#ffd76a', c2: '#ff7ad9', spd: 3, g: 7, t: 8, cls: 'vip' };
+    if (id === 'custom') return { c1: save.pfc.a, c2: save.pfc.b, spd: 11 - save.pfc.s, g: 4, t: 3, cls: '' };
+    const i = id === 'auto' ? save.rank : +id.slice(1);
+    if (!(i >= 0 && i <= 7)) return { c1: '#5f6368', c2: '#2b2f36', spd: 10, g: 0, t: 0, cls: '' };
+    const r = RANKS[i]; return { c1: r.c1, c2: r.c2, spd: r.spd + 1, g: i + 1, t: i, cls: i === 7 ? 'admin' : '' };
+  }
+  function pfAllowed(id) {
+    if (id === 'vip') return !!save.donor;
+    if (/^r[0-7]$/.test(id)) return save.bestRank >= +id[1];
+    return RB.includes(id);
+  }
+  function pfHtml(sz, id, force, lite) {
+    if (!force && !pfAllowed(id)) id = 'auto';
+    if (!RB.includes(id) && !/^r[0-7]$/.test(id)) id = 'auto';
+    const c = pfCfg(id), t = c.t, cl = [c.cls];
+    if (t >= 2) cl.push('aura'); if (t >= 6) cl.push('shine'); if (t === 6) cl.push('god'); if (lite) cl.push('lite');
+    const n = t < 0 ? 0 : [0, 1, 2, 2, 3, 3, 4, 4, 5][t];
+    let h = '';
+    if (t === 6) h += '<span class="pf-wing l"></span><span class="pf-wing r"></span><i class="pf-beam"></i><i class="pf-beam" style="animation-delay:-4s"></i>';
+    if (t === 8) h += '<span class="pf-laurel"></span>';
+    h += '<span class="pf-ring"></span>';
+    if (t >= 5) h += '<span class="pf-ray"></span>';
+    if (t === 7) h += '<span class="pf-spike"></span>';
+    if (t >= 3 && t <= 5) h += '<span class="pf-dash"></span>';
+    h += `<span class="pf-img" ${save.avatar ? `style="background-image:url(${save.avatar})"` : ''}>${save.avatar ? '' : '🎧'}</span>`;
+    for (let k = 0; k < n; k++) h += `<i class="pf-orb" style="animation-delay:-${(k * c.spd * .8 / n).toFixed(2)}s"></i>`;
+    if (t === 7) [0, 60, 120, 180, 240, 300].forEach(a => { h += `<i class="pf-bolt" style="--a:${a}deg;animation-delay:-${(a / 360 * .9).toFixed(2)}s"></i>`; });
+    if (t === 6 || t === 8) [14, 30, 46, 62, 78, 90].forEach((x, k) => { h += `<i class="pf-mote" style="left:${x}%;animation-delay:-${(k * .43).toFixed(2)}s"></i>`; });
+    if (t >= 4 && t !== 7) h += '<b class="pf-spk" style="left:-10%;top:8%">✦</b><b class="pf-spk" style="right:-8%;top:34%;animation-delay:.5s">✦</b><b class="pf-spk" style="left:8%;bottom:-8%;animation-delay:1s">✦</b>';
+    const top = { 4: '💎', 5: '🔥', 7: '⚡' }[t];
+    if (top) h += `<b class="pf-top">${top}</b>`; else if (t === 6) h += '<span class="pf-halo"></span>'; else if (t === 8) h += '<span class="pf-crownx"></span>';
+    return `<span class="pf ${cl.join(' ')}" style="--sz:${sz}px;--c1:${c.c1};--c2:${c.c2};--spd:${c.spd}s;--g:${c.g}">${h}</span>`;
+  }
+  function pfPaint() { $('pfHero').innerHTML = pfHtml(62, save.frame); $('vipTag').hidden = !save.donor; }
+  function pfRender() {
+    $('pfPrev').innerHTML = pfHtml(78, save.frame);
+    const L = [['auto', 'Otomatis'], ['none', 'Tanpa'], ...RANKS.map((r, i) => ['r' + i, r.n]), ['vip', 'VIP'], ['custom', 'Kustom']];
+    $('pfFrames').innerHTML = L.map(([id, n]) => {
+      const ok = pfAllowed(id), on = (save.frame || 'auto') === id;
+      return `<button type="button" class="pf-chip${on ? ' on' : ''}${ok ? '' : ' lock'}" data-pf="${id}" ${ok ? '' : 'disabled'} title="${ok ? '' : id === 'vip' ? 'Khusus pengguna VIP' : 'Capai rank ' + n + ' untuk membuka'}">${pfHtml(40, id, true, true)}<span>${n}</span><small>${ok ? (on ? 'dipakai' : '&nbsp;') : '🔒'}</small></button>`;
+    }).join('');
+    $('pfA').value = save.pfc.a; $('pfB').value = save.pfc.b; $('pfS').value = save.pfc.s;
+    pfPaint();
+  }
+  function pfSave() { try { persist(); } catch (e) {} }
+  async function pfFromFile(f) {   // tanpa blob URL (bisa diblokir halaman): createImageBitmap, cadangan FileReader + <img>
+    let src, w, h;
+    try { src = await createImageBitmap(f, { imageOrientation: 'from-image' }); w = src.width; h = src.height; }
+    catch (e1) {
+      try { src = await createImageBitmap(f); w = src.width; h = src.height; }
+      catch (e2) {
+        const du = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = () => rej(new Error('read')); r.readAsDataURL(f); });
+        src = await new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => rej(new Error('format')); im.src = du; });
+        w = src.naturalWidth; h = src.naturalHeight;
+      }
+    }
+    if (!w || !h) throw new Error('format');
+    const S = 192, c = document.createElement('canvas'); c.width = c.height = S; const m = Math.min(w, h), x = c.getContext('2d');
+    x.fillStyle = '#12121c'; x.fillRect(0, 0, S, S); x.imageSmoothingQuality = 'high';
+    x.drawImage(src, (w - m) / 2, (h - m) / 2, m, m, 0, 0, S, S);
+    if (src.close) src.close();
+    let q = .85, d = c.toDataURL('image/jpeg', q);
+    while (d.length > 55000 && q > .3) { q -= .15; d = c.toDataURL('image/jpeg', q); }
+    return d;
+  }
+  $('pfUp').addEventListener('click', () => $('pfFile').click());
+  $('pfFile').addEventListener('change', async e => {
+    const inp = e.target, f = inp.files && inp.files[0]; if (!f) return;
+    const msg = $('pfMsg'); msg.textContent = 'Membaca foto...';
+    try {
+      save.avatar = await pfFromFile(f);
+      let ok = true; try { ok = persist(); } catch (er) { ok = false; }
+      pfRender();
+      msg.textContent = 'Foto profil disimpan.' + (ok ? '' : ' (Penyimpanan browser diblokir, foto bisa hilang saat game ditutup.)');
+    } catch (er) {
+      msg.textContent = er && er.message === 'read' ? 'File tidak bisa dibaca. Coba pilih ulang fotonya.' : 'Format foto tidak didukung browser (mis. HEIC). Simpan sebagai JPG/PNG lalu coba lagi.';
+    } finally { inp.value = ''; }
+  });
+  $('pfDel').addEventListener('click', () => { save.avatar = ''; pfSave(); pfRender(); $('pfMsg').textContent = 'Foto profil dihapus.'; });
+  $('pfFrames').addEventListener('click', e => { const b = e.target.closest('.pf-chip'); if (!b || b.disabled) return; save.frame = b.dataset.pf; pfSave(); pfRender(); });
+  ['pfA', 'pfB', 'pfS'].forEach(id => {
+    $(id).addEventListener('input', () => { save.pfc = { a: $('pfA').value, b: $('pfB').value, s: +$('pfS').value }; save.frame = 'custom'; pfRender(); });
+    $(id).addEventListener('change', pfSave);
+  });
+  $('pfHero').addEventListener('click', () => {
+    if (save.themeOwned.includes('custom')) { $('aboutModal').classList.add('hidden'); cuOpen(); }
+    else hvToast('Beli “Tema Kustom” di Shop untuk mengubah foto dan frame profil');
+  });
+  new MutationObserver(() => { if (!$('ctModal').classList.contains('hidden')) pfRender(); }).observe($('ctModal'), { attributes: true, attributeFilter: ['class'] });
+  const ra = renderAbout; renderAbout = function () { ra.apply(this, arguments); pfPaint(); };
+  pfPaint();
+})();
+</script>
+<script id="fsExt">
+(function () {
+  const b = $('btnFs'), de = document.documentElement;
+  const req = de.requestFullscreen || de.webkitRequestFullscreen;
+  const isFs = () => !!(document.fullscreenElement || document.webkitFullscreenElement);
+  function sync() { const f = isFs(); b.classList.toggle('on', f); b.title = b.ariaLabel = f ? 'Keluar layar penuh' : 'Layar penuh'; }
+  b.addEventListener('click', () => {
+    if (isFs()) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
+    if (!req) { hvToast('Browser ini tidak mendukung layar penuh. Di iPhone: Bagikan → Tambah ke Layar Utama, lalu buka dari ikon.'); return; }
+    try { const r = req.call(de, { navigationUI: 'hide' }); if (r && r.catch) r.catch(() => hvToast('Layar penuh ditolak browser. Coba tekan lagi.')); }
+    catch (e) { hvToast('Layar penuh ditolak browser. Coba tekan lagi.'); }
+  });
+  document.addEventListener('fullscreenchange', sync); document.addEventListener('webkitfullscreenchange', sync);
+  sync();
+})();
+</script>
 </body>
 </html>
